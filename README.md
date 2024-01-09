@@ -1,126 +1,156 @@
-# Module 01 : Getting Started with React
+# Module 1 : React Installation & Development Environment Setup
 
-## 🗒️ Table of Contains
+## 🗒️ Table of Content
 
-- [📖 Concept](#📖-concept)
-  - [State](#state)
-  - [React](#react)
-  - [How React Rendering](#how-react-rendering)
-- [✒️ Code and Syntax](#✒️-code-and-syntax)
-  - [React Element](#react-element)
-  - [React Component](#react-component)
-  - [Root](#root)
-  - [JSX](#jsx)
+- 🚀 [Setup and Run Rreact Application Using Vite](#🚀-setup-and-run-react-application-using-vite)
+- [🎨 Extention and Theme](#🎨-extention-and-theme)
+- [⚙️ VS Code Setting](#⚙️-vs-code-setting)
 - [⌨️ Shortcut Keys](#⌨️-shortcut-keys)
 
-## 📖 Concept
+## 🚀 Setup and Run React Application using vite
 
-#### State
-
-> 📘 State is a one kind of variable which used to update User Interface or User Iteraction.
-
-Application এ যে ডাটা পরিবর্তন হলে application এর User Interface বা User Interaction পরিবর্তন হয় তাকে state বলা হয়।
-
-#### React
-
-> 📘 React is a library for desigin and developing user interface. Facebook engineer Jordan Walke created the react js, he inspired from php framework which name is **xhp-js**.
-
-React has 3 part which is :
+**Here I note down two way to setup react project :**
 
 <details>
-<summary>1. React Library</summary>
+<summary>1. Using NPM</summary>
 
-It's use for create User Interface and User Interaction.
+**Create vite application :**
 
-</details>
+```bash
+# simply
+npm create vite@latest
 
-<details>
-<summary>2. ReactDOM</summary>
-ReactDOM is a package in React that provides DOM-specific methods to render DOM elements of the web page.
-</details>
-
-<details>
-<summary>3. React Native</summary>
-React Native used for utilizes APIs and native UI components to build mobile application.
-</details>
-
-#### How React Rendering
-
-React use **virtual dom** for draft. When state update then react compare the virtual dom with updated dom and update where is changed.
-
-## ✒️ Code and Syntax
-
-### React Element
-
-> 📘 React Element is object which is create using `React.createElment` method.
-
-**Creating react element :**
-
-```jsx
-React.createElement("ElementName", nullOrData, innerContent);
-
-// for example
-React.createElement("p", null, "Hello, Wolrd!");
-
-// another example
-React.createElement(
-  "p",
-  null,
-  React.createElement("span", null, "Hello, World!")
-);
+# with name and application
+npm create vite@latest applicationName -- --template vue/react/next/svelt
 ```
 
-### React Component
+**Then go to the project file and install all package :**
 
-> 📘 React is one kind of function which is return react element.
+```bash
+npm install
 
-**React component example :**
+# or
 
-```jsx
-function ComponentName() {
-  return ReactElement;
+npm i
+```
+
+**Run project as developer mode :**
+
+```bash
+npm run dev
+
+# or
+vite
+```
+
+**Build project :**
+
+```bash
+npm run build
+```
+
+</details>
+
+<details>
+<summary>2. Yarn</summary>
+
+**Create vite application :**
+
+```bash
+# simply
+yarn create vite
+
+# with name and application
+yarn create vite applicationName --template vue/react/next/svelt
+```
+
+**Then go to the project file and install all package :**
+
+```bash
+yarn install
+
+# or
+
+yarn
+```
+
+**Run project as developer mode :**
+
+```bash
+yarn run dev
+
+# or
+vite
+```
+
+**Build project :**
+
+```bash
+yarn run build
+```
+
+</details>
+
+## 🎨 Extention and Theme
+
+**Important extention for helping write react code :**
+
+<details>
+<summary>1. Path Autocomplete</summary>
+Provides path completion for visual studio and vs code for web.
+</details>
+
+<details>
+<summary>2. Auto Rename tag</summary>
+Auto rename paired HTML/XML tag.
+</details>
+
+<details>
+<summary>3. ES Lint</summary>
+Integrates ESlint javascript into vs code.
+</details>
+
+<details>
+<summary>4. Prettier</summary>
+Code formatter using prettier.
+</details>
+
+## ⚙️ VS Code Setting
+
+If need to add vs code setting in specific workspace then create `.vscode` folder and create `settings.json` file where contain setting. This setting will overwrite the global setting.
+
+**VS code setting from lws with ESLint and prettier setting :**
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "eslint.run": "onSave",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "path-autocomplete.extensionOnImport": true,
+  "path-autocomplete.excludedItems": {
+    "*/.js": {
+      "when": "**"
+    },
+    "*/.jsx": {
+      "when": "**"
+    }
+  },
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false
 }
 ```
 
-> 📘 Dump Component is component which has no functionality.
-
-### Root
-
-> 📘 React Root is a dom element where ReactDOM render the react element or component.
-
-**Creating root where react element will render :**
-
-```jsx
-let root = ReactDOM.createRoot(DomElement);
-
-// for example
-let root = ReactDOM.createRoot(Document.getElementById("root"));
-```
-
-**Render root :**
-
-```jsx
-root.render(ReactElmentOrComponent);
-```
-
-### JSX
-
-> 📘 JSX full form is **JavaScript XML** used for esaily create and used react element and component. It's look like html.
-
-**JSX example :**
-
-```jsx
-// jsx
-<p>Hello, World!</p>;
-
-// what is it actually
-React.createElement("p", null, "Hello, World!");
-```
-
-> 🔴 But browser don't understand the jsx. That's why react give us transpiler which convert the JSX to javascript. This transpiler name is babel.
-
 ## ⌨️ Shortcut Keys
 
-| Key                    | Description                      |
-| ---------------------- | -------------------------------- |
-| `ctrl` + `shift` + `L` | Select all same word in vs code. |
+| Keys         | Description                    |
+| ------------ | ------------------------------ |
+| `ctrl` + `,` | Open the vs code setting file. |
+| `ctrl` + `~` | Open the terminal in vs code.  |
