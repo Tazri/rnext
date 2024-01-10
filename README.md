@@ -1,49 +1,73 @@
-# Module 01 : 1.3 How React Works : Virtual DOM
+# Module 01 : 1.4 - Basics of React Components : Your first component
 
-## 🗒️ Table of Connent
+## 🗒️ Table of Component
 
-- [⚙️ Browser Rendering Process](#⚙️-browser-rendering-process)
-- [💡 Way to Improve DOM Manipulation](#💡-way-to-improve-dom-manipulation)
-- [🥽 Virtual DOM](#🥽-virtual-dom)
-- [🔑 Why Use React](#🔑-why-use-react)
-- [📊 Profiling](#📊-profiling)
+- [🧱 What is Component](#🧱-what-is-component)
+- [🛠️ Step of Defining Component](#🛠️-step-of-defining-component)
+- [⌨️ Shortcut Keys](#⌨️-shortcut-keys)
+- [🔑 VS Code Command](#🔑-vs-code-command)
 
-## ⚙️ Browser Rendering Process
+## 🧱 What is Component
 
-![Browser Rendering Process](./aseet/browser_rendering_process.png)
+> 📘 Components is a buidling block of react. It's a JavaScript function or class that can use as a HTML markup.
 
-> 🔴 Browser painting process is slow that's why sometimg work slow when lot's of DOM operation happens.
+**The react component difference from HTML tag is :**
 
-## 💡 Way to improve DOM manipulation
+- It's JavaScript function or class.
+- It's reuseable.
+- It's can be functional component.
 
-There are two way to improve DOM manipulation. Here :
+## 🛠️ Step of Defining Component
 
-- Batch Update
-- Less DOM Operation
+<details>
+<summary>1. Export the Component</summary>
 
-> 📗 Batch update means, don't update the DOM in every process instead, take what kind of DOM updates in every process before DOM update and update the DOM in one time.
+Must be export the component from file for reuse it from another file. For this thing, use `export default` keyword.
 
-## 🥽 Virtual DOM
+</details>
 
-> 📗 Virtual DOM is a one kind of DOM which is smiliar to the real DOM or draft of real DOM. If state update then react first change the virtual dom. React has two DOM in every state, one is before the change state and another is after the change state. React compare both DOM using **_diffing_** algorithm or **Reconciliation** algorithm and find out where the change happend and according to change the real DOM.
+<details>
+<summary>2. Define the function</summary>
 
-In this way react achieve :
+Below define a function for component :
 
-- Batch Update
-- Less DOM Operation
+```jsx
+export default Profile(){
 
-![Virtual DOM](./aseet/virtualdom.png)
+}
+```
 
-## 🔑 Why Use React
+> 🔴 React components are regular JavaScript functions, but their names must start with a capital letter or they won’t work!
 
-- React has a strong community.
-- Best developer experiance.
-- Lot of community support.
+</details>
 
-## 📊 Profiling
+<details>
+<summary>3. Add Markup</summary>
 
-Here I compare the React, JQuery and normal html and css performance to printing simple text.
+The function return **JSX** or return another component. For example :
 
-![Profiling](./aseet/browser_performance_normal_react_and_jquery.png)
+```jsx
+export default function Profile() {
+  return (
+    <div>
+      <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+    </div>
+  );
+}
+```
 
-> 🔴 The picture prove that react have't super performance feature. React only famous for community, developer experiance and community support.
+> 🔴 Without parentheses, any code on the lines after return will be ignored!
+
+</details>
+
+## ⌨️ Shortcut Keys
+
+| Keys                   | Description                             |
+| ---------------------- | --------------------------------------- |
+| `ctrl` + `shift` + `P` | Use for open command prompt in vs code. |
+
+## 🔑 VS Code Command
+
+| Command | Dsecription          |
+| ------- | -------------------- |
+| restart | Restart the VS Code. |
