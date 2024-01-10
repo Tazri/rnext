@@ -1,101 +1,125 @@
-# Module 01 : 1.6 : Basics of JSX: React's Markup - JavaScript in JSX With Curly Braces
+# Module 01 : 1.6 : Understanding Props - Passing Props to a Component
 
 ## 🗒️ Table of Content
 
-- [📝 Passing String with Quote](#📝-passing-string-with-quote)
-- [✒️ Using Curly Braces](#✒️-using-curly-braces)
-- [🖊️ Using Double Curlies](#🖊️-using-duoble-curlies)
+- [✉️ Props](#✉️-props)
+- [📨 Passing Props to a Component](#📨-passing-props-to-a-component)
+- [🟰 Specifying a Default Value for a prop](#🟰-specifying-a-default-value-for-a-prop)
+- [📝 Forwarding Props With the JSX Spread Syntax](#📝-forwarding-props-with-the-jsx-spread-syntax)
+- [🚚 Passing JSX as Children](#🚚-passing-jsx-as-children)
+- [⏰ How Props Change Over Time](#⏰-how-props-change-over-time)
+- [💡 Productivity Tips](#💡-productivity-tips)
 
-## 📝 Passing String with Quote
+## ✉️ Props
 
-> 📗 In JSX, pass the string to set attribute. In that case use double quote or single quote.
+> 📗 React components use props to communicate each other. Every parent components can pass some informatin to it's child components by giving them props.
 
-Here example :
-
-```jsx
-// here pass string in title attribute.
-<h1 title="This is title">Hello, World!</h1>
-```
-
-## ✒️ Using Curly Braces
-
-> 📗 If need to use dynamice value in attribute or inside the text then use curly braces.Inside the curly braces, can use any kind of JavaScript expression.
-
-Here example :
-
-```jsx
-function Component() {
-  const theme = "dark";
-  const name = "Anonymous";
-
-  return (
-    <>
-      <div className={theme}>
-        <h1>Hello, {name}</h1>
-      </div>
-    </>
-  );
-}
-```
-
-> 🔴 Don't use curly braces for dynamically set HTML tag name otherwise it through error.
-
-### Where to use curly braces
+## 📨 Passing Props to a Component
 
 <details>
-<summary>1. <b>As text</b> directly inside a JSX tag</summary>
-
-**✔️ Correct :**
-
-```jsx
-<h1>Hello, {name}!</h1>
-```
-
-**❌ Wrong:**
-
-```jsx
-<{tag}>Hello, World!</{tag}>
-```
-
-</details>
-
-<details>
-<summary>2. <b>As attributes</b> immediatly following the = sign</summary>
-
-**✔️ Correct :**
-
-```jsx
-<img src={avatar} alt="avatar" />
-```
-
-**❌ Wrong :**
-
-```jsx
-<img src="{avatar}" alt="avater" />
-
-// this src not pass dinamically, it's value is '{avatar}'.
-// which is not work properly
-```
-
-</details>
-
-## 🖊️ Using Duoble Curlies
-
-> 📗 Double curlies `{}` nothing more than a JavaScript object inside the JSX. In this way to can write css inline style.
+<summary>Step 1 : Pass props to the child component</summary>
+First pass the props to child component.
 
 **For example :**
 
 ```jsx
-<ul
-  style={{
-    backgroundColor: "black",
-    color: "pink",
-  }}
->
-  <li>Improve the videophone</li>
-  <li>Prepare aeronautics lectures</li>
-  <li>Work on the alcohol-fuelled engine</li>
-</ul>
+// passing props in Profile component
+
+<Profile name="anonymous" age="21" />
 ```
 
-> 🔴 Here use `backgroundColor` property instead of `background-color`. Cause `background-color` is not valid object property name in JavaScript. Where come this type of css style property name then write it in camel case.
+**Props name can be pass dynamically :**
+
+```jsx
+<Profile name={name} age={age} />
+```
+
+</details>
+
+<details>
+<summary>2. Read props inside the child component.</summary>
+
+**Receive the props from child component :**
+
+```jsx
+export default Profile(props){
+  let {
+    name,
+    age
+  } = props;
+
+  return (<h1>{name} ({age})</h1>);
+}
+```
+
+**Another way to receive props using object destructuring :**
+
+```jsx
+export default Propfile({name,age}){
+  return (<h1>{name} ({age}))</h1>
+}
+```
+
+</details>
+
+## 🟰 Specifying a default value for a prop
+
+**Here is example to specifying default value for a prop :**
+
+```jsx
+function Profile({ name, gender = "male" }) {
+  // ...
+}
+```
+
+> 🔴 The default value is using only for the prop value missing or `undefined`.
+
+## 📝 Forwarding Props With the JSX Spread Syntax
+
+It possible to pass props using spread operator. For example :
+
+```jsx
+const person = { name: "a", age: "12" };
+
+return <Profile name={person.name} age={person.age} />;
+```
+
+**It can be write this way :**
+
+```jsx
+const person = {name : "a",age:"12"};
+
+return <Profile ...person />
+```
+
+## 🚚 Passing JSX as Children
+
+**Here syntax to example of passing props as children :**
+
+```jsx
+<Profile>
+  <h1>Anonymouse</h1>
+</Profile>
+```
+
+**Receiving children from child :**
+
+```jsx
+export default function Profile(props) {
+  const {
+    children, // this is : <h1>Anonymous</h1>
+  } = props;
+
+  return <div>{children}</div>;
+}
+```
+
+## ⏰ How Props Change Over Time
+
+> 📗 Props are **immutable**. When needs to change its props then parent component pass the another props and old props will deleted from memory.
+
+> 🔴 Don't try to change props.
+
+## 💡 Productivity Tips
+
+> 💡 If pres `ctrl` and click on any react component then the component file will be open.
