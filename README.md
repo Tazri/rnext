@@ -1,4 +1,4 @@
-# Module 01 : 1.6 : Basics of JSX: React's Markup - JavaScript in JSX With Curly Braces
+# Module 01 : 1.7 : Basics of JSX: React's Markup - JavaScript in JSX With Curly Braces
 
 ## 🗒️ Table of Content
 
