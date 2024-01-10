@@ -1,3 +1,5 @@
+import List from "./List";
+
 export default function App() {
-  return <welcome />;
+  return <List />;
 }

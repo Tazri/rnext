@@ -1,101 +1,103 @@
-# Module 01 : 1.7 : Basics of JSX: React's Markup - JavaScript in JSX With Curly Braces
+# Module 01 : 1.10 : Rendering List
 
 ## 🗒️ Table of Content
 
-- [📝 Passing String with Quote](#📝-passing-string-with-quote)
-- [✒️ Using Curly Braces](#✒️-using-curly-braces)
-- [🖊️ Using Double Curlies](#🖊️-using-duoble-curlies)
+- [📜 Rendering Lists](#📜-rendering-lists)
+- [❓ Why Need Key ?](#❓-why-need-key)
+- [💡 Where to Get `key`](#💡-where-to-get-key)
+- [✒️ Rules of `key`](#✒️-rules-of-key)
 
-## 📝 Passing String with Quote
+## 📜 Rendering Lists
 
-> 📗 In JSX, pass the string to set attribute. In that case use double quote or single quote.
+It's often need to render to multiple similar from a collection of data. Below a example :
 
-Here example :
+Think that we have a data :
 
 ```jsx
-// here pass string in title attribute.
-<h1 title="This is title">Hello, World!</h1>
+const items = [
+  {
+    name: "Mouse",
+    price: "$22",
+    id: 0,
+  },
+  {
+    name: "Keyboard",
+    price: "$12",
+    id: 1,
+  },
+  {
+    name: "Monitor",
+    price: "$50",
+    id: 2,
+  },
+];
 ```
 
-## ✒️ Using Curly Braces
-
-> 📗 If need to use dynamice value in attribute or inside the text then use curly braces.Inside the curly braces, can use any kind of JavaScript expression.
-
-Here example :
+**Now render those items as list item ;**
 
 ```jsx
-function Component() {
-  const theme = "dark";
-  const name = "Anonymous";
-
+export default function List() {
+  let itemsTag = items.map(({ name, price }) => {
+    return (
+      <li>
+        {name}({price})
+      </li>
+    );
+  });
   return (
     <>
-      <div className={theme}>
-        <h1>Hello, {name}</h1>
-      </div>
+      <ul>{itemsTag}</ul>
     </>
   );
 }
 ```
 
-> 🔴 Don't use curly braces for dynamically set HTML tag name otherwise it through error.
+> 🔴 Above code will give a warning is : `Warning: Each child in a list should have a unique “key” prop.`
 
-### Where to use curly braces
+> 📗 Every item in array must be have a unique key from other item in array.
+
+**Here the correct code :**
+
+```jsx
+export default function List() {
+  let itemsTag = items.map(({ name, price, id }) => {
+    return (
+      <li key={id}>
+        {name}({price})
+      </li>
+    );
+  });
+  return (
+    <>
+      <ul>{itemsTag}</ul>
+    </>
+  );
+}
+```
+
+> 📝 Note : JSX elements directly inside a map() call always need keys!
+
+> 🔴 Don't use array index as a key cause array index is changeable.
+
+## ❓ Why Need Key ?
+
+React can identify the array item uniquely through key. React can't use array index for this thing cause array index is change anytime.
+
+## 💡 Where to Get `key`
 
 <details>
-<summary>1. <b>As text</b> directly inside a JSX tag</summary>
-
-**✔️ Correct :**
-
-```jsx
-<h1>Hello, {name}!</h1>
-```
-
-**❌ Wrong:**
-
-```jsx
-<{tag}>Hello, World!</{tag}>
-```
-
+<summary>1. Data From a Database</summary>
+If data is coming from a database, you can use the database keys/IDs, which are unique by nature.
 </details>
 
 <details>
-<summary>2. <b>As attributes</b> immediatly following the = sign</summary>
+<summary>2. Locally Generated Data</summary>
 
-**✔️ Correct :**
-
-```jsx
-<img src={avatar} alt="avatar" />
-```
-
-**❌ Wrong :**
-
-```jsx
-<img src="{avatar}" alt="avater" />
-
-// this src not pass dinamically, it's value is '{avatar}'.
-// which is not work properly
-```
+If data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, [crypto.randomUUID()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) or a package like [uuid](https://www.npmjs.com/package/uuid) when creating items.
 
 </details>
 
-## 🖊️ Using Duoble Curlies
+## ✒️ Rules of `key`
 
-> 📗 Double curlies `{}` nothing more than a JavaScript object inside the JSX. In this way to can write css inline style.
-
-**For example :**
-
-```jsx
-<ul
-  style={{
-    backgroundColor: "black",
-    color: "pink",
-  }}
->
-  <li>Improve the videophone</li>
-  <li>Prepare aeronautics lectures</li>
-  <li>Work on the alcohol-fuelled engine</li>
-</ul>
-```
-
-> 🔴 Here use `backgroundColor` property instead of `background-color`. Cause `background-color` is not valid object property name in JavaScript. Where come this type of css style property name then write it in camel case.
+- Keys must be unique among siblings.
+- Keys must not change or that defeats their purpose! Don’t generate them while rendering.
