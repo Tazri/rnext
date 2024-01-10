@@ -79,6 +79,14 @@ export default function List() {
 
 > 🔴 Don't use array index as a key cause array index is changeable.
 
+If not used JSX but render the list then used `Fragment`. Here example :
+
+```jsx
+import { Fragment } from "react";
+
+return <Fragment key={id}>{text}</Fragment>;
+```
+
 ## ❓ Why Need Key ?
 
 React can identify the array item uniquely through key. React can't use array index for this thing cause array index is change anytime.
