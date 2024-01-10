@@ -32,9 +32,7 @@ Must be export the component from file for reuse it from another file. For this 
 Below define a function for component :
 
 ```jsx
-export default Profile(){
-
-}
+export default function Profile() {}
 ```
 
 > 🔴 React components are regular JavaScript functions, but their names must start with a capital letter or they won’t work!
