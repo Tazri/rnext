@@ -1,156 +1,49 @@
-# Module 1 : React Installation & Development Environment Setup
+# Module 01 : 1.3 How React Works : Virtual DOM
 
-## 🗒️ Table of Content
+## 🗒️ Table of Connent
 
-- 🚀 [Setup and Run Rreact Application Using Vite](#🚀-setup-and-run-react-application-using-vite)
-- [🎨 Extention and Theme](#🎨-extention-and-theme)
-- [⚙️ VS Code Setting](#⚙️-vs-code-setting)
-- [⌨️ Shortcut Keys](#⌨️-shortcut-keys)
+- [⚙️ Browser Rendering Process](#⚙️-browser-rendering-process)
+- [💡 Way to Improve DOM Manipulation](#💡-way-to-improve-dom-manipulation)
+- [🥽 Virtual DOM](#🥽-virtual-dom)
+- [🔑 Why Use React](#🔑-why-use-react)
+- [📊 Profiling](#📊-profiling)
 
-## 🚀 Setup and Run React Application using vite
+## ⚙️ Browser Rendering Process
 
-**Here I note down two way to setup react project :**
+![Browser Rendering Process](./aseet/browser_rendering_process.png)
 
-<details>
-<summary>1. Using NPM</summary>
+> 🔴 Browser painting process is slow that's why sometimg work slow when lot's of DOM operation happens.
 
-**Create vite application :**
+## 💡 Way to improve DOM manipulation
 
-```bash
-# simply
-npm create vite@latest
+There are two way to improve DOM manipulation. Here :
 
-# with name and application
-npm create vite@latest applicationName -- --template vue/react/next/svelt
-```
+- Batch Update
+- Less DOM Operation
 
-**Then go to the project file and install all package :**
+> 📗 Batch update means, don't update the DOM in every process instead, take what kind of DOM updates in every process before DOM update and update the DOM in one time.
 
-```bash
-npm install
+## 🥽 Virtual DOM
 
-# or
+> 📗 Virtual DOM is a one kind of DOM which is smiliar to the real DOM or draft of real DOM. If state update then react first change the virtual dom. React has two DOM in every state, one is before the change state and another is after the change state. React compare both DOM using **_diffing_** algorithm or **Reconciliation** algorithm and find out where the change happend and according to change the real DOM.
 
-npm i
-```
+In this way react achieve :
 
-**Run project as developer mode :**
+- Batch Update
+- Less DOM Operation
 
-```bash
-npm run dev
+![Virtual DOM](./aseet/virtualdom.png)
 
-# or
-vite
-```
+## 🔑 Why Use React
 
-**Build project :**
+- React has a strong community.
+- Best developer experiance.
+- Lot of community support.
 
-```bash
-npm run build
-```
+## 📊 Profiling
 
-</details>
+Here I compare the React, JQuery and normal html and css performance to printing simple text.
 
-<details>
-<summary>2. Yarn</summary>
+![Profiling](./aseet/browser_performance_normal_react_and_jquery.png)
 
-**Create vite application :**
-
-```bash
-# simply
-yarn create vite
-
-# with name and application
-yarn create vite applicationName --template vue/react/next/svelt
-```
-
-**Then go to the project file and install all package :**
-
-```bash
-yarn install
-
-# or
-
-yarn
-```
-
-**Run project as developer mode :**
-
-```bash
-yarn run dev
-
-# or
-vite
-```
-
-**Build project :**
-
-```bash
-yarn run build
-```
-
-</details>
-
-## 🎨 Extention and Theme
-
-**Important extention for helping write react code :**
-
-<details>
-<summary>1. Path Autocomplete</summary>
-Provides path completion for visual studio and vs code for web.
-</details>
-
-<details>
-<summary>2. Auto Rename tag</summary>
-Auto rename paired HTML/XML tag.
-</details>
-
-<details>
-<summary>3. ES Lint</summary>
-Integrates ESlint javascript into vs code.
-</details>
-
-<details>
-<summary>4. Prettier</summary>
-Code formatter using prettier.
-</details>
-
-## ⚙️ VS Code Setting
-
-If need to add vs code setting in specific workspace then create `.vscode` folder and create `settings.json` file where contain setting. This setting will overwrite the global setting.
-
-**VS code setting from lws with ESLint and prettier setting :**
-
-```json
-{
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.tslint": "explicit",
-    "source.organizeImports": "explicit"
-  },
-  "eslint.run": "onSave",
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
-  },
-  "path-autocomplete.extensionOnImport": true,
-  "path-autocomplete.excludedItems": {
-    "*/.js": {
-      "when": "**"
-    },
-    "*/.jsx": {
-      "when": "**"
-    }
-  },
-  "javascript.validate.enable": false,
-  "typescript.validate.enable": false
-}
-```
-
-## ⌨️ Shortcut Keys
-
-| Keys         | Description                    |
-| ------------ | ------------------------------ |
-| `ctrl` + `,` | Open the vs code setting file. |
-| `ctrl` + `~` | Open the terminal in vs code.  |
+> 🔴 The picture prove that react have't super performance feature. React only famous for community, developer experiance and community support.
