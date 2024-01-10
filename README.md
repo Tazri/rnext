@@ -1,73 +1,61 @@
-# Module 01 : 1.4 - Basics of React Components : Your first component
+# Module 01 : 1.5 - Basics of React Components : Importing & Exporting Components
 
-## 🗒️ Table of Component
+## 🚚 Exporting and Importing
 
-- [🧱 What is Component](#🧱-what-is-component)
-- [🛠️ Step of Defining Component](#🛠️-step-of-defining-component)
-- [⌨️ Shortcut Keys](#⌨️-shortcut-keys)
-- [🔑 VS Code Command](#🔑-vs-code-command)
+Move a component in three steps is :
 
-## 🧱 What is Component
+1. Make a new JS file to put the components in.
+2. Export the component from the file. (using either default or named exports).
+3. Import it in the file where need to use the component.
 
-> 📘 Components is a buidling block of react. It's a JavaScript function or class that can use as a HTML markup.
-
-**The react component difference from HTML tag is :**
-
-- It's JavaScript function or class.
-- It's reuseable.
-- It's can be functional component.
-
-## 🛠️ Step of Defining Component
+There are two type of exports. Here :
 
 <details>
-<summary>1. Export the Component</summary>
+<summary>1. Default Export</summary>
 
-Must be export the component from file for reuse it from another file. For this thing, use `export default` keyword.
-
-</details>
-
-<details>
-<summary>2. Define the function</summary>
-
-Below define a function for component :
+> 📗 In that case just use `export default` keyword to export the component.
 
 ```jsx
-export default Profile(){
-
+export default function ComponentName() {
+  return <h1>This is component</h1>;
 }
 ```
 
-> 🔴 React components are regular JavaScript functions, but their names must start with a capital letter or they won’t work!
+> 🔴 Only one function can export by default.
+
+Below example of import `default export` component :
+
+```jsx
+import ComponentName from "file/path/FileName.jsx";
+
+// if using vite then it can be possible
+// to import component without file extention
+
+import ComponentName from "file/path/FileName";
+```
 
 </details>
 
 <details>
-<summary>3. Add Markup</summary>
+<summary>2. Named Export</summary>
 
-The function return **JSX** or return another component. For example :
+> 📗 In that case just use `export` keyword to export the component.
 
 ```jsx
-export default function Profile() {
-  return (
-    <div>
-      <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
-    </div>
-  );
+export function ComponentName() {
+  return <h1>This is component</h1>;
 }
 ```
 
-> 🔴 Without parentheses, any code on the lines after return will be ignored!
+Below example of import `named export` component :
+
+```jsx
+import { ComponentName } from "file/path/FileName.jsx";
+
+// if using vite then it can be possible
+// to import component without file extention
+
+import { ComponentName } from "file/path/FileName";
+```
 
 </details>
-
-## ⌨️ Shortcut Keys
-
-| Keys                   | Description                             |
-| ---------------------- | --------------------------------------- |
-| `ctrl` + `shift` + `P` | Use for open command prompt in vs code. |
-
-## 🔑 VS Code Command
-
-| Command | Dsecription          |
-| ------- | -------------------- |
-| restart | Restart the VS Code. |
