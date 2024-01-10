@@ -1,108 +1,101 @@
-# Module 01 : 1.6 : Basics of JSX: React's Markup - Writing Markup with JSX
+# Module 01 : 1.6 : Basics of JSX: React's Markup - JavaScript in JSX With Curly Braces
 
-## Table of Content
+## 🗒️ Table of Content
 
-- [📝 Writing Markup with JSX](#📝-writing-markup-with-jsx)
-- [✒️ The Rules of JSX](#✒️-the-rules-of-jsx)
+- [📝 Passing String with Quote](#📝-passing-string-with-quote)
+- [✒️ Using Curly Braces](#✒️-using-curly-braces)
+- [🖊️ Using Double Curlies](#🖊️-using-duoble-curlies)
 
-## 📝 Writing Markup with JSX
+## 📝 Passing String with Quote
 
-> 📗 JSX is a syntax extention for JavaScript that lets you write HTML - like markup inside a JavaScript file. JSX full form is **JavaScript XML**.
+> 📗 In JSX, pass the string to set attribute. In that case use double quote or single quote.
 
-Some important point on JSX :
-
-- JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
-- JSX and React are two separate things.
-- JSX follow some extra rule to write which is completly different from HTML.
-- Behind scene vite or any other react project, JSX convert to plain JavaScript object through Babel transpilar.
-
-## ✒️ The Rules of JSX
-
-<details>
-<summary>1. Return a single root element</summary>
-
-> 📙 To return multiple elements from a component, wrap them with a single parent tag.
-
-For example :
+Here example :
 
 ```jsx
-// wrong
-return (
-  <h1>Hello, World!</h1>
-  <p>What's Up World?</p>
-)
-
-// correct
-return (
-  <div>
-    <h1>Hello, World!</h1>
-    <p>What's Up World?</p>
-  </div>
-)
+// here pass string in title attribute.
+<h1 title="This is title">Hello, World!</h1>
 ```
 
-> 📗 If not use extra div or any other HTML for return multiple component, then use react fragment. `<></>`
+## ✒️ Using Curly Braces
 
-For Example :
+> 📗 If need to use dynamice value in attribute or inside the text then use curly braces.Inside the curly braces, can use any kind of JavaScript expression.
+
+Here example :
 
 ```jsx
-return (
-  <>
-    <h1>Hello, World!</h1>
-    <p>What's Up World?</p>
-  </>
-);
+function Component() {
+  const theme = "dark";
+  const name = "Anonymous";
+
+  return (
+    <>
+      <div className={theme}>
+        <h1>Hello, {name}</h1>
+      </div>
+    </>
+  );
+}
 ```
 
-> 📘 The empty tag is called **React Fragment**.
+> 🔴 Don't use curly braces for dynamically set HTML tag name otherwise it through error.
 
-### ❓ Why do multiple JSX tags need to be wrapped ?
-
-> Cause JSX convert to plain JavaScript object behind the scene and a JavaScript function can't return multiple object without wraping them in an array.
-
-</details>
+### Where to use curly braces
 
 <details>
-<summary>2. Close All Tag</summary>
-JSX requires tag to be explicitly closed even self closing tag must be close.
+<summary>1. <b>As text</b> directly inside a JSX tag</summary>
 
-For example :
+**✔️ Correct :**
 
 ```jsx
-// wrong
-<img src="profile.png" alt="profile" />
+<h1>Hello, {name}!</h1>
+```
 
-// correct
-<img src="profile.png" alt="profile" />
+**❌ Wrong:**
+
+```jsx
+<{tag}>Hello, World!</{tag}>
 ```
 
 </details>
 
 <details>
-<summary>3. camelCase <del>All</del> Most of the things!</summary>
+<summary>2. <b>As attributes</b> immediatly following the = sign</summary>
 
-> 📗 JSX turns into JavaScript that's why some attributes written in JSX can be become keys of JavaScript objects or JavaScript keyword.
-
-For example `class` keyword. It's is a JavaScript keyword and also it's use in HTML tag to select them. That's why it's write `className`.
+**✔️ Correct :**
 
 ```jsx
-// wrong in jsx
-<h1 class="heading">Hello, World!</h1>
-
-// correct in jsx
-<h1 className="heading">Hello, World!</h1>
+<img src={avatar} alt="avatar" />
 ```
 
-Every event handling attributes like `onclick`, must be write in camel case otherwise it's through error. For example :
+**❌ Wrong :**
 
 ```jsx
-// wrong
-<button onclick=functionName>Click</button>
+<img src="{avatar}" alt="avater" />
 
-// correct
-<button onClick={functionName}>Click</button>
+// this src not pass dinamically, it's value is '{avatar}'.
+// which is not work properly
 ```
 
 </details>
 
-> 💡 Pro-tip : Use a JSX converter to convert HTML and SVG to JSX. [Click it to HTML to JSX converter site.](https://transform.tools/html-to-jsx)
+## 🖊️ Using Duoble Curlies
+
+> 📗 Double curlies `{}` nothing more than a JavaScript object inside the JSX. In this way to can write css inline style.
+
+**For example :**
+
+```jsx
+<ul
+  style={{
+    backgroundColor: "black",
+    color: "pink",
+  }}
+>
+  <li>Improve the videophone</li>
+  <li>Prepare aeronautics lectures</li>
+  <li>Work on the alcohol-fuelled engine</li>
+</ul>
+```
+
+> 🔴 Here use `backgroundColor` property instead of `background-color`. Cause `background-color` is not valid object property name in JavaScript. Where come this type of css style property name then write it in camel case.
