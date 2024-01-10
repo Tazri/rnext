@@ -1,61 +1,108 @@
-# Module 01 : 1.5 - Basics of React Components : Importing & Exporting Components
+# Module 01 : 1.6 : Basics of JSX: React's Markup - Writing Markup with JSX
 
-## 🚚 Exporting and Importing
+## Table of Content
 
-Move a component in three steps is :
+- [📝 Writing Markup with JSX](#📝-writing-markup-with-jsx)
+- [✒️ The Rules of JSX](#✒️-the-rules-of-jsx)
 
-1. Make a new JS file to put the components in.
-2. Export the component from the file. (using either default or named exports).
-3. Import it in the file where need to use the component.
+## 📝 Writing Markup with JSX
 
-There are two type of exports. Here :
+> 📗 JSX is a syntax extention for JavaScript that lets you write HTML - like markup inside a JavaScript file. JSX full form is **JavaScript XML**.
+
+Some important point on JSX :
+
+- JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
+- JSX and React are two separate things.
+- JSX follow some extra rule to write which is completly different from HTML.
+- Behind scene vite or any other react project, JSX convert to plain JavaScript object through Babel transpilar.
+
+## ✒️ The Rules of JSX
 
 <details>
-<summary>1. Default Export</summary>
+<summary>1. Return a single root element</summary>
 
-> 📗 In that case just use `export default` keyword to export the component.
+> 📙 To return multiple elements from a component, wrap them with a single parent tag.
+
+For example :
 
 ```jsx
-export default function ComponentName() {
-  return <h1>This is component</h1>;
-}
+// wrong
+return (
+  <h1>Hello, World!</h1>
+  <p>What's Up World?</p>
+)
+
+// correct
+return (
+  <div>
+    <h1>Hello, World!</h1>
+    <p>What's Up World?</p>
+  </div>
+)
 ```
 
-> 🔴 Only one function can export by default.
+> 📗 If not use extra div or any other HTML for return multiple component, then use react fragment. `<></>`
 
-Below example of import `default export` component :
+For Example :
 
 ```jsx
-import ComponentName from "file/path/FileName.jsx";
+return (
+  <>
+    <h1>Hello, World!</h1>
+    <p>What's Up World?</p>
+  </>
+);
+```
 
-// if using vite then it can be possible
-// to import component without file extention
+> 📘 The empty tag is called **React Fragment**.
 
-import ComponentName from "file/path/FileName";
+### ❓ Why do multiple JSX tags need to be wrapped ?
+
+> Cause JSX convert to plain JavaScript object behind the scene and a JavaScript function can't return multiple object without wraping them in an array.
+
+</details>
+
+<details>
+<summary>2. Close All Tag</summary>
+JSX requires tag to be explicitly closed even self closing tag must be close.
+
+For example :
+
+```jsx
+// wrong
+<img src="profile.png" alt="profile" />
+
+// correct
+<img src="profile.png" alt="profile" />
 ```
 
 </details>
 
 <details>
-<summary>2. Named Export</summary>
+<summary>3. camelCase <del>All</del> Most of the things!</summary>
 
-> 📗 In that case just use `export` keyword to export the component.
+> 📗 JSX turns into JavaScript that's why some attributes written in JSX can be become keys of JavaScript objects or JavaScript keyword.
+
+For example `class` keyword. It's is a JavaScript keyword and also it's use in HTML tag to select them. That's why it's write `className`.
 
 ```jsx
-export function ComponentName() {
-  return <h1>This is component</h1>;
-}
+// wrong in jsx
+<h1 class="heading">Hello, World!</h1>
+
+// correct in jsx
+<h1 className="heading">Hello, World!</h1>
 ```
 
-Below example of import `named export` component :
+Every event handling attributes like `onclick`, must be write in camel case otherwise it's through error. For example :
 
 ```jsx
-import { ComponentName } from "file/path/FileName.jsx";
+// wrong
+<button onclick=functionName>Click</button>
 
-// if using vite then it can be possible
-// to import component without file extention
-
-import { ComponentName } from "file/path/FileName";
+// correct
+<button onClick={functionName}>Click</button>
 ```
 
 </details>
+
+> 💡 Pro-tip : Use a JSX converter to convert HTML and SVG to JSX. [Click it to HTML to JSX converter site.](https://transform.tools/html-to-jsx)
