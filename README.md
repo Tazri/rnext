@@ -1,4 +1,4 @@
-# Module 01 : 1.6 : Understanding Props - Passing Props to a Component
+# Module 01 : 1.9 : Conditional Rendering
 
 ## 🗒️ Table of Content
 
