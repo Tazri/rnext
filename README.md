@@ -1,4 +1,4 @@
-# Module 01 : 1.6 : Understanding Props - Passing Props to a Component
+# Module 01 : 1.8 : Understanding Props - Passing Props to a Component
 
 ## 🗒️ Table of Content
 
@@ -42,20 +42,21 @@ First pass the props to child component.
 **Receive the props from child component :**
 
 ```jsx
-export default Profile(props){
-  let {
-    name,
-    age
-  } = props;
+export default function Profile(props) {
+  let { name, age } = props;
 
-  return (<h1>{name} ({age})</h1>);
+  return (
+    <h1>
+      {name} ({age})
+    </h1>
+  );
 }
 ```
 
 **Another way to receive props using object destructuring :**
 
 ```jsx
-export default Propfile({name,age}){
+export default function Profile({name,age}){
   return (<h1>{name} ({age}))</h1>
 }
 ```
