@@ -1,111 +1,30 @@
-# Module 01 : 1.10 : Rendering List
+# Module 01 : 1.11 - Pure Components : Keeping Components Pure
 
-## 🗒️ Table of Content
+> 📗 Some JavaScript functions are pure. Pure functions only perform a calculation and nothing more.
 
-- [📜 Rendering Lists](#📜-rendering-lists)
-- [❓ Why Need Key ?](#❓-why-need-key)
-- [💡 Where to Get `key`](#💡-where-to-get-key)
-- [✒️ Rules of `key`](#✒️-rules-of-key)
+## ✒️ Purity : Components as formulas
 
-## 📜 Rendering Lists
+- It minds its own business. It does not change any objects or variables that existed before it was called.
+- Same inputs, same output. Given the same inputs, a pure function should always return the same result.
 
-It's often need to render to multiple similar from a collection of data. Below a example :
+> 📘 The **single responsibility principle (SRP)** is a computer programming principle that states that "A module should be responsible to one, and only one, actor."
 
-Think that we have a data :
+## 🛠️ Side Effects: (Un)Intended Consequences
 
-```jsx
-const items = [
-  {
-    name: "Mouse",
-    price: "$22",
-    id: 0,
-  },
-  {
-    name: "Keyboard",
-    price: "$12",
-    id: 1,
-  },
-  {
-    name: "Monitor",
-    price: "$50",
-    id: 2,
-  },
-];
-```
+React's components rendering process must always be pure. Every components should only return their JSX, and not change any objects or variables that existed before rendering - that would make them impure!
 
-**Now render those items as list item ;**
+> 📗 React offers a “Strict Mode” in which it calls each component’s function twice during development. By calling the component functions twice, Strict Mode helps find components that break these rules.
 
-```jsx
-export default function List() {
-  let itemsTag = items.map(({ name, price }) => {
-    return (
-      <li>
-        {name}({price})
-      </li>
-    );
-  });
-  return (
-    <>
-      <ul>{itemsTag}</ul>
-    </>
-  );
-}
-```
+## ⏰ Local Mutation: Component’s Little Secret
 
-> 🔴 Above code will give a warning is : `Warning: Each child in a list should have a unique “key” prop.`
+The main point :
 
-> 📗 Every item in array must be have a unique key from other item in array.
+- It’s completely fine to change variables and objects that you’ve just created while rendering.
 
-**Here the correct code :**
+## ❓ Where Can Cause Side Effects
 
-```jsx
-export default function List() {
-  let itemsTag = items.map(({ name, price, id }) => {
-    return (
-      <li key={id}>
-        {name}({price})
-      </li>
-    );
-  });
-  return (
-    <>
-      <ul>{itemsTag}</ul>
-    </>
-  );
-}
-```
+Main point are :
 
-> 📝 Note : JSX elements directly inside a map() call always need keys!
-
-> 🔴 Don't use array index as a key cause array index is changeable.
-
-If not used JSX but render the list then used `Fragment`. Here example :
-
-```jsx
-import { Fragment } from "react";
-
-return <Fragment key={id}>{text}</Fragment>;
-```
-
-## ❓ Why Need Key ?
-
-React can identify the array item uniquely through key. React can't use array index for this thing cause array index is change anytime.
-
-## 💡 Where to Get `key`
-
-<details>
-<summary>1. Data From a Database</summary>
-If data is coming from a database, you can use the database keys/IDs, which are unique by nature.
-</details>
-
-<details>
-<summary>2. Locally Generated Data</summary>
-
-If data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, [crypto.randomUUID()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) or a package like [uuid](https://www.npmjs.com/package/uuid) when creating items.
-
-</details>
-
-## ✒️ Rules of `key`
-
-- Keys must be unique among siblings.
-- Keys must not change or that defeats their purpose! Don’t generate them while rendering.
+- In React, side effects usually belong inside event handlers.
+- So event handlers don’t need to be pure.
+- If event handler dose not work for specific side effect then use `useEffect`. However, this approach should be last resort.
