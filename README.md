@@ -1,30 +1,94 @@
-# Module 01 : 1.11 - Pure Components : Keeping Components Pure
+# Module 01 : 1.12 - Understanding Complex React UI
 
-> 📗 Some JavaScript functions are pure. Pure functions only perform a calculation and nothing more.
+## 🗒️ Table of Content
 
-## ✒️ Purity : Components as formulas
+- [🖥️ Component as Tree](#🖥️-component-as-tree)
+- [🌲 The Render Tree](#🌲-the-render-tree)
+- [🌳 The Module Dependency Tree](#🌳-the-module-dependency-tree)
 
-- It minds its own business. It does not change any objects or variables that existed before it was called.
-- Same inputs, same output. Given the same inputs, a pure function should always return the same result.
+## 🖥️ Component as Tree
 
-> 📘 The **single responsibility principle (SRP)** is a computer programming principle that states that "A module should be responsible to one, and only one, actor."
+> 📗 Trees are a relationship model between items and UI is often represented using tree structures.
 
-## 🛠️ Side Effects: (Un)Intended Consequences
+![Ui as tree](./src/assets/preserving_state_dom_tree.webp)
 
-React's components rendering process must always be pure. Every components should only return their JSX, and not change any objects or variables that existed before rendering - that would make them impure!
+## 🌲 The Render Tree
 
-> 📗 React offers a “Strict Mode” in which it calls each component’s function twice during development. By calling the component functions twice, Strict Mode helps find components that break these rules.
+> 📗 A render tree represents a single render pass of a React application. With conditional rendering, a parent component may render different children depending on the data passed.
 
-## ⏰ Local Mutation: Component’s Little Secret
+For example, below code :
 
-The main point :
+```jsx
+export default function App() {
+  return (
+    <>
+      <FancyText title text="Get Inspired App" />
+      <InspirationGenerator>
+        <Copyright year={2004} />
+      </InspirationGenerator>
+    </>
+  );
+}
 
-- It’s completely fine to change variables and objects that you’ve just created while rendering.
+// inspiration generator
+export default function InspirationGenerator({children}) {
+  const [index, setIndex] = React.useState(0);
+  const quote = quotes[index];
+  const next = () => setIndex((index + 1) % quotes.length);
 
-## ❓ Where Can Cause Side Effects
+  return (
+    <>
+      <p>Your inspirational quote is:</p>
+      <FancyText text={quote} />
+      <button onClick={next}>Inspire me again</button>
+      {children}
+    </>
+  );
+}
+```
 
-Main point are :
+Which render tree is :
 
-- In React, side effects usually belong inside event handlers.
-- So event handlers don’t need to be pure.
-- If event handler dose not work for specific side effect then use `useEffect`. However, this approach should be last resort.
+![Render Tree](./src/assets/render_tree.webp)
+
+If `InspirationGenerator` has conditional render :
+
+```jsx
+export default function InspirationGenerator({ children }) {
+  const [index, setIndex] = React.useState(0);
+  const inspiration = inspirations[index];
+  const next = () => setIndex((index + 1) % inspirations.length);
+
+  return (
+    <>
+      <p>Your inspirational {inspiration.type} is:</p>
+      {inspiration.type === "quote" ? (
+        <FancyText text={inspiration.value} />
+      ) : (
+        <Color value={inspiration.value} />
+      )}
+
+      <button onClick={next}>Inspire me again</button>
+      {children}
+    </>
+  );
+}
+```
+
+Then the render tree is :
+
+![Conditional Render](./src/assets/conditional_render_tree.webp)
+
+## 🌳 The Module Dependency Tree
+
+> 📗 Module dependency tree show the relationships amoung application file.
+
+Here is example of previous code :
+
+![Module Dependency Tree](./src/assets/module_dependency_tree.webp)
+
+The different between render tree and module dependency tree is :
+
+- The nodes that make-up the tree represent modules, not components.
+- Non-component modules, like inspirations.js, are also represented in this tree. The render tree only encapsulates components.
+-
