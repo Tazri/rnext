@@ -1,94 +1,40 @@
-# Module 01 : 1.12 - Understanding Complex React UI
+# Module 01 : 1.13 : Project Tutorial - Tic-Tac-Toe Game
 
-## 🗒️ Table of Content
+# Tic Toc Toe
 
-- [🖥️ Component as Tree](#🖥️-component-as-tree)
-- [🌲 The Render Tree](#🌲-the-render-tree)
-- [🌳 The Module Dependency Tree](#🌳-the-module-dependency-tree)
+This project from module 1, video no 1.13. Also I refactored the code later and add two more feature.
 
-## 🖥️ Component as Tree
+## 🎥 Live Link
 
-> 📗 Trees are a relationship model between items and UI is often represented using tree structures.
+| [![Go "rnext-mini-practice-project-tic-toc-toe"](./projectInfo/screenshot_of_project.png)](https://rnext-mini-practice-project-tic-toc-toe.vercel.app/ "🚗 Go to the site") |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <p align="center">[ Go to Site >](https://rnext-mini-practice-project-tic-toc-toe.vercel.app/ "🚀 rnext-mini-practice-project-tic-toc-toe")</p>                             |
 
-![Ui as tree](./src/assets/preserving_state_dom_tree.webp)
+## [🗃️ My Tic-Tac-Toe Project Repository Link >](https://github.com/Tazri/rnext_mini_practice_project_tic_toc_toe)
 
-## 🌲 The Render Tree
+## 🖥️ Divide the UI Into Small Component
 
-> 📗 A render tree represents a single render pass of a React application. With conditional rendering, a parent component may render different children depending on the data passed.
+![Dividing the UI into small component](./projectInfo/rnext_tic_toc_toe_game_module_ui_dividing_component.png)
 
-For example, below code :
+## 🌲 Render Tree
 
-```jsx
-export default function App() {
-  return (
-    <>
-      <FancyText title text="Get Inspired App" />
-      <InspirationGenerator>
-        <Copyright year={2004} />
-      </InspirationGenerator>
-    </>
-  );
-}
+![Render tree](./projectInfo/rnext_tic_toc_toe_game_project_component_render_tree.png)
 
-// inspiration generator
-export default function InspirationGenerator({children}) {
-  const [index, setIndex] = React.useState(0);
-  const quote = quotes[index];
-  const next = () => setIndex((index + 1) % quotes.length);
+## 🌳 Module Dependency Tree
 
-  return (
-    <>
-      <p>Your inspirational quote is:</p>
-      <FancyText text={quote} />
-      <button onClick={next}>Inspire me again</button>
-      {children}
-    </>
-  );
-}
-```
+![Module Dependency Tree](./projectInfo/rnext_tic_toc_toe_game_module_dependency_tree.png)
 
-Which render tree is :
+## ✒️ What Feature I add Later
 
-![Render Tree](./src/assets/render_tree.webp)
+- Display game draw if no one is winner.
+- Adding reset button.
 
-If `InspirationGenerator` has conditional render :
+## 📝 Important Note From The Video
 
-```jsx
-export default function InspirationGenerator({ children }) {
-  const [index, setIndex] = React.useState(0);
-  const inspiration = inspirations[index];
-  const next = () => setIndex((index + 1) % inspirations.length);
+**Tapas sir tell us some important rules. That was :**
 
-  return (
-    <>
-      <p>Your inspirational {inspiration.type} is:</p>
-      {inspiration.type === "quote" ? (
-        <FancyText text={inspiration.value} />
-      ) : (
-        <Color value={inspiration.value} />
-      )}
-
-      <button onClick={next}>Inspire me again</button>
-      {children}
-    </>
-  );
-}
-```
-
-Then the render tree is :
-
-![Conditional Render](./src/assets/conditional_render_tree.webp)
-
-## 🌳 The Module Dependency Tree
-
-> 📗 Module dependency tree show the relationships amoung application file.
-
-Here is example of previous code :
-
-![Module Dependency Tree](./src/assets/module_dependency_tree.webp)
-
-The different between render tree and module dependency tree is :
-
-- The nodes that make-up the tree represent modules, not components.
-- Non-component modules, like inspirations.js, are also represented in this tree. The render tree only encapsulates components.
--
+- Requirement Analysis
+  - Break the requirement into small pieces.
+  - Connect the pieces.
+- Take some break in middle of project for represhing mind.
+- If any question then take note down.
