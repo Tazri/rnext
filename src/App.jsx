@@ -1,5 +1,11 @@
-import List from "./List";
-
 export default function App() {
-  return <List />;
+  return (
+    <button
+      onClick={() => {
+        alert("Clicked");
+      }}
+    >
+      Click Me
+    </button>
+  );
 }

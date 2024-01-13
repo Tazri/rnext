@@ -1,40 +1,83 @@
-# Module 01 : 1.13 : Project Tutorial - Tic-Tac-Toe Game
+# Module 02 : 2.1 : Respoinding to Events - Adding Event Handlers
 
-# Tic Toc Toe
+## 🔫 Adding Event Handlers
 
-This project from module 1, video no 1.13. Also I refactored the code later and add two more feature.
+**Step to adding event handler :**
 
-## 🎥 Live Link
+1. Declare a function for event, for example `handleClick`.
+2. Implement the logic inside the function.
+3. Add event handle in JSX.
 
-| [![Go "rnext-mini-practice-project-tic-toc-toe"](./projectInfo/screenshot_of_project.png)](https://rnext-mini-practice-project-tic-toc-toe.vercel.app/ "🚗 Go to the site") |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p align="center">[ Go to Site >](https://rnext-mini-practice-project-tic-toc-toe.vercel.app/ "🚀 rnext-mini-practice-project-tic-toc-toe")</p>                             |
+For example :
 
-## [🗃️ My Tic-Tac-Toe Project Repository Link >](https://github.com/Tazri/rnext_mini_practice_project_tic_toc_toe)
+```jsx
+export default function Button() {
+  // declare the event function
+  function handleClick() {
+    // define the logic
+    alert("Clicked");
+  }
 
-## 🖥️ Divide the UI Into Small Component
+  // Add event handle in JSX
+  return <button onClick={handleClick}>Click Me</button>;
+}
+```
 
-![Dividing the UI into small component](./projectInfo/rnext_tic_toc_toe_game_module_ui_dividing_component.png)
+**There are some convention to adding event handler is :**
 
-## 🌲 Render Tree
+- Are usually defined inside components.
+- Have name that start with `handle`, followed by the name of the event.
 
-![Render tree](./projectInfo/rnext_tic_toc_toe_game_project_component_render_tree.png)
+By convention, It is common to name event handlers as handle followed by the event name. Often to see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
 
-## 🌳 Module Dependency Tree
+**Example of inline event handler :**
 
-![Module Dependency Tree](./projectInfo/rnext_tic_toc_toe_game_module_dependency_tree.png)
+```jsx
+<button onClick={() => {
+  alert('You clicked me!');
+}}>
+```
 
-## ✒️ What Feature I add Later
+> 🔴 Functions passed to event handlers must be passed, not called. For example:
 
-- Display game draw if no one is winner.
-- Adding reset button.
+| 🟢 passing a function (correct) | 🔴 calling a function (incorrect) |
+| ------------------------------- | --------------------------------- |
+| `onClick={handleClick}`         | `onClick={handleClick()}`         |
 
-## 📝 Important Note From The Video
+## 📝 Reading Props in Event Handlers
 
-**Tapas sir tell us some important rules. That was :**
+Because event handlers are declared inside of a component, they have access to the component’s props. For example :
 
-- Requirement Analysis
-  - Break the requirement into small pieces.
-  - Connect the pieces.
-- Take some break in middle of project for represhing mind.
-- If any question then take note down.
+```jsx
+function AlertButton({ message, children }) {
+  return <button onClick={() => alert(message)}>{children}</button>;
+}
+```
+
+## 🚚 Passing Event Handlers as Props
+
+**Example to passing event handler as props :**
+
+```jsx
+function PlayButton({ movieName }) {
+  function handlePlayClick() {
+    alert(`Playing ${movieName}!`);
+  }
+
+  return <Button onClick={handlePlayClick}>Play "{movieName}"</Button>;
+}
+```
+
+## ✒️ Naming Event Handler Props
+
+```jsx
+function Button({ onSmash, children }) {
+  return <button onClick={onSmash}>{children}</button>;
+}
+
+export default function App() {
+  return <Button onSmash={() => alert("Playing!")}>Play Movie</Button>;
+}
+```
+
+> 🔴 Naming event handler props don't use browser supported event handler like `onClick`, instead of it use `onSmash` a good choose.
