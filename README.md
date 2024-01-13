@@ -1,62 +1,74 @@
-# Module 02 : 2.2: Respoinding to Events - Adding Event Handlers
+# Module 02 : 2.3 : Understanding State : A Component's Memory
 
-## 🛞 Propagation
+## ❓ When a Regular Variable isn’t Enough
 
-> 📗 Event handlers will also catch events from any children component might have. That is called an event “bubbles” or “propagates” up the tree: it starts with where the event happened, and then goes up the tree.
+- **Local variables don’t persist between renders.** When React renders a component in a second time, it renders it from scratch—it doesn’t consider any changes to the local variables.
 
-**Below the example :**
+- **Changes to local variables won’t trigger renders.**
 
-```jsx
-<div
-  className="Toolbar"
-  onClick={() => {
-    console.log("Click on div..");
-  }}
->
-  <button onClick={() => console.log("Click on button..")}>Play</button>
-</div>
-/**
- * If click on button then event gose up like :
- * button -> div
- *
- */
-```
+To update a component with new data, two things need to happen :
 
-## 🚦 Stoping Propagation
+1. **Retain** the data between renders.
+2. **Trigger** React to render the component with new data (re-rendering).
 
-Use `event.stopPropagation()` method to stop the propagation. Here example :
+The `useState` Hook provides those two things:
+
+- A state variable to retain the data between renders.
+- A state setter function to update the variable and trigger React to render the component again.
+
+## 🚚 Adding a State Variable
+
+To add a state variable, import useState from React at the top of the file:
 
 ```jsx
-<button onClick={e => {
-      e.stopPropagation();
-      onClick();
-    }}>
+import { useState } from "react";
 ```
 
-If need to capture all child event from parent event propagation is stop :
+then create state variable like this at top of function defination :
 
 ```jsx
-<div
-  onClickCapture={() => {
-    /* this runs first */
-  }}
->
-  <button onClick={(e) => e.stopPropagation()} />
-  <button onClick={(e) => e.stopPropagation()} />
-</div>
+const [stateName, setStateName] = useState(defaultValue);
 ```
 
-## 🛑 Preventing Default Behavior
+If need the change sate value then use `setStateName` function otherwhish component could not be render.
 
-Some browser events have default behavior associated with them like `form` submit. In that case prevent those default behavior just use `event.prevent.Default()` method. For example :
+> 📘 In React, useState, as well as any other function starting with “use”, is called a Hook.
+
+## 🦴 Anatomy of `useState`
+
+> 🗒️ The convention is to name this pair like const `[something, setSomething]`. You could name it anything you like, but conventions make things easier to understand across projects.
+
+The only argument to useState is the initial value of your state variable. Every time your component renders, useState gives you an array containing two values:
+
+- The state variable (something) with the value you stored.
+- The state setter function (`setSomething`) which can update the state variable and trigger React to render the component again.
+
+Here’s how that happens in action:
+
+1. Your component renders the first time.
+2. You update the state.
+3. Your component’s second render.
+4. And so on.
+
+> 📗 You can have as many state variables of as many types as you like in one component.
+
+## 🚗 State is Isolated and Private
+
+> 📗 State is local to a component instance on the screen. In other words, if you render the same component twice, each copy will have completely isolated state! Changing one of them will not affect the other.
+
+**For example :**
 
 ```jsx
-<form onSubmit={e => {
-      e.preventDefault();
-      alert('Submitting!');
-    }}>
+import Gallery from "./Gallery.js";
+
+export default function Page() {
+  return (
+    <div className="Page">
+      <Gallery />
+      <Gallery />
+    </div>
+  );
+}
 ```
 
-## 💊 Can event handlers have side effects?
-
-> 📗 Absolutely! Event handlers are the best place for side effects. Unlike rendering functions, event handlers don’t need to be pure.
+Here if change the state of first `<Galary />` it dose not effect the other one.
