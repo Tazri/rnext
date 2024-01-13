@@ -33,6 +33,19 @@ Use `event.stopPropagation()` method to stop the propagation. Here example :
     }}>
 ```
 
+If need to capture all child event from parent event propagation is stop :
+
+```jsx
+<div
+  onClickCapture={() => {
+    /* this runs first */
+  }}
+>
+  <button onClick={(e) => e.stopPropagation()} />
+  <button onClick={(e) => e.stopPropagation()} />
+</div>
+```
+
 ## 🛑 Preventing Default Behavior
 
 Some browser events have default behavior associated with them like `form` submit. In that case prevent those default behavior just use `event.prevent.Default()` method. For example :
