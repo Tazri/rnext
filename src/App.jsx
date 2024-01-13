@@ -1,11 +1,20 @@
-export default function App() {
+export default function Toolbar() {
   return (
-    <button
+    <div
+      className="Toolbar"
       onClick={() => {
-        alert("Clicked");
+        alert("You clicked on the toolbar!");
       }}
     >
-      Click Me
-    </button>
+      <button
+        onClick={(event) => {
+          event.stopPropagation();
+          alert("Playing!");
+        }}
+      >
+        Play Movie
+      </button>
+      <button onClick={() => alert("Uploading!")}>Upload Image</button>
+    </div>
   );
 }

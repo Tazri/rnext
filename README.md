@@ -1,83 +1,49 @@
-# Module 02 : 2.1 : Respoinding to Events - Adding Event Handlers
+# Module 02 : 2.2: Respoinding to Events - Adding Event Handlers
 
-## 🔫 Adding Event Handlers
+## 🛞 Propagation
 
-**Step to adding event handler :**
+> 📗 Event handlers will also catch events from any children component might have. That is called an event “bubbles” or “propagates” up the tree: it starts with where the event happened, and then goes up the tree.
 
-1. Declare a function for event, for example `handleClick`.
-2. Implement the logic inside the function.
-3. Add event handle in JSX.
-
-For example :
+**Below the example :**
 
 ```jsx
-export default function Button() {
-  // declare the event function
-  function handleClick() {
-    // define the logic
-    alert("Clicked");
-  }
-
-  // Add event handle in JSX
-  return <button onClick={handleClick}>Click Me</button>;
-}
+<div
+  className="Toolbar"
+  onClick={() => {
+    console.log("Click on div..");
+  }}
+>
+  <button onClick={() => console.log("Click on button..")}>Play</button>
+</div>
+/**
+ * If click on button then event gose up like :
+ * button -> div
+ *
+ */
 ```
 
-**There are some convention to adding event handler is :**
+## 🚦 Stoping Propagation
 
-- Are usually defined inside components.
-- Have name that start with `handle`, followed by the name of the event.
-
-By convention, It is common to name event handlers as handle followed by the event name. Often to see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
-
-**Example of inline event handler :**
+Use `event.stopPropagation()` method to stop the propagation. Here example :
 
 ```jsx
-<button onClick={() => {
-  alert('You clicked me!');
-}}>
+<button onClick={e => {
+      e.stopPropagation();
+      onClick();
+    }}>
 ```
 
-> 🔴 Functions passed to event handlers must be passed, not called. For example:
+## 🛑 Preventing Default Behavior
 
-| 🟢 passing a function (correct) | 🔴 calling a function (incorrect) |
-| ------------------------------- | --------------------------------- |
-| `onClick={handleClick}`         | `onClick={handleClick()}`         |
-
-## 📝 Reading Props in Event Handlers
-
-Because event handlers are declared inside of a component, they have access to the component’s props. For example :
+Some browser events have default behavior associated with them like `form` submit. In that case prevent those default behavior just use `event.prevent.Default()` method. For example :
 
 ```jsx
-function AlertButton({ message, children }) {
-  return <button onClick={() => alert(message)}>{children}</button>;
-}
+<form onSubmit={e => {
+      e.preventDefault();
+      alert('Submitting!');
+    }}>
 ```
 
-## 🚚 Passing Event Handlers as Props
+## 💊 Can event handlers have side effects?
 
-**Example to passing event handler as props :**
-
-```jsx
-function PlayButton({ movieName }) {
-  function handlePlayClick() {
-    alert(`Playing ${movieName}!`);
-  }
-
-  return <Button onClick={handlePlayClick}>Play "{movieName}"</Button>;
-}
-```
-
-## ✒️ Naming Event Handler Props
-
-```jsx
-function Button({ onSmash, children }) {
-  return <button onClick={onSmash}>{children}</button>;
-}
-
-export default function App() {
-  return <Button onSmash={() => alert("Playing!")}>Play Movie</Button>;
-}
-```
-
-> 🔴 Naming event handler props don't use browser supported event handler like `onClick`, instead of it use `onSmash` a good choose.
+> 📗 Absolutely! Event handlers are the best place for side effects. Unlike rendering functions, event handlers don’t need to be pure.
