@@ -1,30 +1,55 @@
-# Module 02 : 2.6 : State as Snapshot
+# Module 02 : 2.7 : Queueing a Series of State Updates
 
-## 📸 Rendering Takes a Snapshot in Time
+## 📊 Updating the Same State Multiple Times Before The Next Render
 
-> 📗 “Rendering” means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated using its state at the time of the render.
+If need to used state to update the state then use updater function. `setState` also accept the updater function. Here is example :
 
-When React re-renders a component:
+```jsx
+setState((currentState) => {
+  // do somthing
+  return updatedStateValue;
+});
+```
 
-- React calls your function again.
-- Your function returns a new JSX snapshot.
-- React then updates the screen to match the snapshot your function returned.
+Here is how react process updater function :
 
-**Setting state only changes it for the next render.**
+- React queues this function to be processed after all the other code in the event handler has run.
+- During the next render, React goes through the queue and gives you the final updated state.
 
-Example :
+## ❓ What Happens If You Update State After Replacing It ?
+
+**Understanding this with example :**
 
 ```jsx
 <button onClick={() => {
-  setNumber(number + 1);
-  setNumber(number + 1);
-  setNumber(number + 1);
-}}>+3</button>
+  setNumber(number + 5); // now number is 5
+  setNumber(n => n + 1); // here n = 5;
+  // cause previous line directly update the state
+  // and updater function received updated state.
+}}>
+```
 
-// this code is equivalant of :
-<button onClick={() => {
-  setNumber(0 + 1);
-  setNumber(0 + 1);
-  setNumber(0 + 1);
-}}>+3</button>
+## ✒️ Naming Conventions
+
+It’s common to name the updater function argument by the first letters of the corresponding state variable:
+
+```jsx
+setEnabled((e) => !e);
+setLastName((ln) => ln.reverse());
+setFriendCount((fc) => fc * 2);
+```
+
+## ⚙️ Implementing State Queue
+
+```jsx
+export function getFinalState(baseState, queue) {
+  // TODO: do something with the queue...
+  return queue.reduce((previousstate, currentState) => {
+    if (typeof currentState === "function") {
+      return currentState(previousstate);
+    } else {
+      return currentState;
+    }
+  }, baseState);
+}
 ```
