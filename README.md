@@ -1,30 +1,30 @@
-# Module 02 : 2.5 : How Rendering Works
+# Module 02 : 2.6 : State as Snapshot
 
-## ⚙️ How React Render
+## 📸 Rendering Takes a Snapshot in Time
 
-How react process of requesting and serving UI has three steps:
+> 📗 “Rendering” means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated using its state at the time of the render.
 
-<details>
-<summary><b>step 1 :</b> Triggering a render (delivering the guest’s order to the kitchen)</summary>
+When React re-renders a component:
 
-There are two reasons for a component to render:
+- React calls your function again.
+- Your function returns a new JSX snapshot.
+- React then updates the screen to match the snapshot your function returned.
 
-1. It’s the component’s initial render.
-2. The component’s (or one of its ancestors’) state has been updated.
+**Setting state only changes it for the next render.**
 
-</details>
+Example :
 
-<details>
-<summary><b>step 2 :</b> Rendering the component (preparing the order in the kitchen)</summary>
- 
-- **On initial render**, React will call the root component.
-- **For subsequent renders**, React will call the function component whose state update triggered the render.
-</details>
+```jsx
+<button onClick={() => {
+  setNumber(number + 1);
+  setNumber(number + 1);
+  setNumber(number + 1);
+}}>+3</button>
 
-<details>
-<summary><b>step 3 :</b> Committing to the DOM (placing the order on the table)</summary>
-
-- For the initial render, React will use the appendChild() DOM API to put all the DOM nodes it has created on screen.
-- For re-renders, React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
-
-</details>
+// this code is equivalant of :
+<button onClick={() => {
+  setNumber(0 + 1);
+  setNumber(0 + 1);
+  setNumber(0 + 1);
+}}>+3</button>
+```
