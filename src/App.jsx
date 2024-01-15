@@ -1,68 +1,56 @@
+/* eslint-disable react/prop-types */
 import { useImmer } from "use-immer";
-import Field from "./Field";
 
-export default function Counter() {
-  const [data, updateData] = useImmer({
-    name: "",
-    email: "",
-    password: "",
-  });
-  function handleSubmit(e) {
-    console.log(data);
-    updateData({
-      name: "",
-      email: "",
-      password: "",
+const initialList = [
+  { id: 0, title: "Big Bellies", seen: false },
+  { id: 1, title: "Lunar Landscape", seen: false },
+  { id: 2, title: "Terracotta Army", seen: true },
+];
+
+export default function BucketList() {
+  const [myList, updateMyList] = useImmer(initialList);
+  const [yourList, updateYourList] = useImmer(initialList);
+
+  function handleToggleMyList(artworkId, nextSeen) {
+    updateMyList((draft) => {
+      draft[artworkId].seen = nextSeen;
     });
-    e.preventDefault();
   }
 
-  function handleChange(e) {
-    updateData((draft) => {
-      draft[e.target.name] = e.target.value;
+  function handleToggleYourList(artworkId, nextSeen) {
+    updateYourList((draft) => {
+      draft[artworkId].seen = nextSeen;
     });
   }
 
   return (
-    <div className="bg-slate-700 text-white text-center p-8">
-      <h2 className="text-3xl">Form</h2>
-      <form
-        onSubmit={handleSubmit}
-        className="p-4 flex flex-col gap-y-4 border-2 w-[60%] min-w-[400px] mx-auto my-4 content-center"
-      >
-        <Field
-          fieldName={"Name"}
-          name={"name"}
-          placeholder="Enter Your Name"
-          value={data.name}
-          handleChange={handleChange}
-          type="text"
-        />
-
-        <Field
-          fieldName={"Email"}
-          name={"email"}
-          placeholder="Enter Your Email"
-          value={data.email}
-          handleChange={handleChange}
-          type="email"
-        />
-
-        <Field
-          fieldName={"password"}
-          name={"password"}
-          placeholder="Enter Your Password"
-          value={data.password}
-          handleChange={handleChange}
-          type="password"
-        />
-
-        <input
-          type="submit"
-          value="Submit"
-          className="bg-white text-slate-700 cursor-pointer"
-        />
-      </form>
+    <div className="p-4 bg-slate-900 text-white">
+      <h1>Art Bucket List</h1>
+      <h2>My list of art to see:</h2>
+      <ItemList artworks={myList} onToggle={handleToggleMyList} />
+      <h2>Your list of art to see:</h2>
+      <ItemList artworks={yourList} onToggle={handleToggleYourList} />
     </div>
+  );
+}
+
+function ItemList({ artworks, onToggle }) {
+  return (
+    <ul>
+      {artworks.map((artwork) => (
+        <li key={artwork.id}>
+          <label className="flex row gap-2">
+            <input
+              type="checkbox"
+              checked={artwork.seen}
+              onChange={(e) => {
+                onToggle(artwork.id, e.target.checked);
+              }}
+            />
+            <span className="cursor-pointer">{artwork.title}</span>
+          </label>
+        </li>
+      ))}
+    </ul>
   );
 }
