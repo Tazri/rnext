@@ -1,4 +1,4 @@
-# Module 3 : 3.2 : Thinking about UI declarativly in React - Finding Visual States
+# Module 3 : 3.3: Thinking About UI declaratively in React - Finalize React States & Connect Event Handlers
 
 To better understand how to think in React, you’ll walk through reimplementing this UI in React below:
 
@@ -7,25 +7,6 @@ To better understand how to think in React, you’ll walk through reimplementing
 - **Represent** the state in memory using useState
 - **Remove** any non-essential state variables
 - **Connect** the event handlers to set the state
-
-## 🔍 Identify your component’s different visual states
-
-> 📗 This step - first, you need to visualize all the different “states” of the UI the user might see.
-
-> 📗 **Displaying many visual states at once**. If a component has a lot of visual states, it can be convenient to show them all on one page. Pages like this are often called “living styleguides” or “storybooks”.
-
-## 🔫 Determine what triggers those state changes
-
-You can trigger state updates in response to two kinds of inputs:
-
-- **Human inputs :**, like clicking a button, typing in a field, navigating a link. (Require Event Handler)
-- **Computer inputs :**, like a network response arriving, a timeout completing, an image loading.
-
-> 📗 To help visualize this flow, try drawing each state on paper as a labeled circle, and each change between two states as an arrow. You can sketch out many flows this way and sort out bugs long before implementation.
-
-If I do this thing with tasker(module 2 project) project then it Should like that :
-
-![State Maping](./forReadMe/state_maping.png)
 
 ## 🧠 Represent the state in memory with `useState`
 
