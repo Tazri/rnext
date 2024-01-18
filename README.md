@@ -1,19 +1,15 @@
-# Module 02 : 2.9 : Updating Array in a State
+# Project 2 : Tasker
 
-> 📗 In JavaScript, arrays are just another kind of object. Like with objects, **you should treat arrays in React state as read-only.**
+The repository where I store the main code is private now for some reason. Case I think that it's relate with module 3 assignments. That's why I private main repository.
 
-## 🚚 Updating Arrays Without Mutation
+## 🖥️ Divide The UI Into Component
 
-| **Operation** | **Avoid (mutates the array)**       | **Prefer (returns a new array)**   |
-| ------------- | ----------------------------------- | ---------------------------------- |
-| adding        | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax |
-| removing      | `pop`, `shift`, `splice`            | `filter`, `slice`                  |
-| replacing     | `splice`, `arr[i] = ...` assignment | `map`                              |
-| sorting       | `reverse`, `sort`                   | copty the array first              |
+![Dividing UI](./forReadMe/divide_the_ui_into_component.png)
 
-## ⌨️ Keyboard Shortcuts
+**Editor :**
 
-| Keys                                    | Description                     |
-| --------------------------------------- | ------------------------------- |
-| `ctrl` + `alt` + `shift` + `down arrow` | Copy the line to next line.     |
-| `ctrl` + `alt` + `shift` + `up arrow`   | Copy the line to previous line. |
+![Editor Component](./forReadMe/divide_the_ui_into_component_editor.png)
+
+## 🌲 Component Render Tree
+
+![Component Render Tree](./forReadMe/component_render_tree.png)
