@@ -1,15 +1,13 @@
-# Project 2 : Tasker
+# Module 3 : 3.1 Declaritive vs Imperative UI
 
-The repository where I store the main code is private now for some reason. Case I think that it's relate with module 3 assignments. That's why I private main repository.
+## 📢 Declaritive
 
-## 🖥️ Divide The UI Into Component
+> 📗 Declarative programming is a method to abstract away the control flow for logic required for software to perform an action, and instead involves stating what the task or desired outcome is.
 
-![Dividing UI](./forReadMe/divide_the_ui_into_component.png)
+- In declarative, Dose not need to describe how to solve problem in every step.
 
-**Editor :**
+## 🗒️ Imperative
 
-![Editor Component](./forReadMe/divide_the_ui_into_component_editor.png)
+> 📗 Imperative programming is a software development paradigm where Functions are implicitly coded in every step required to solve a problem.
 
-## 🌲 Component Render Tree
-
-![Component Render Tree](./forReadMe/component_render_tree.png)
+- In Imperative, Absolutly describe every step of problem solving.
