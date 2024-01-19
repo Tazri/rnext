@@ -1,27 +1,39 @@
-# Module 3 : 3.3: Thinking About UI declaratively in React - Finalize React States & Connect Event Handlers
+# Module 3 : 3.4 : Choosing the State Structure - Group Related State
 
-To better understand how to think in React, you’ll walk through reimplementing this UI in React below:
+## ✒️ Principles for structuring state
 
-- **Identify** your component’s different visual states
-- **Determine** what triggers those state changes
-- **Represent** the state in memory using useState
-- **Remove** any non-essential state variables
-- **Connect** the event handlers to set the state
+- **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
+- **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and “disagree” with each other, you leave room for mistakes. Try to avoid this.
+- **Avoid redundant state.** If you can calculate some information from the component’s props or its existing state variables during rendering, you should not put that information into that component’s state.
+- **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
+- **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
 
-## 🧠 Represent the state in memory with `useState`
+## 🧱 Group Related State
 
-> 📗 Next you’ll need to represent the visual states of your component in memory with useState. Simplicity is key: each piece of state is a “moving piece”, and you want as few “moving pieces” as possible. More complexity leads to more bugs!
+**\*Example :**
 
-## 🗑️ Remove any non-essential state variables
+```jsx
+const [x, setX] = useState(0);
+const [y, setY] = useState(0);
 
-> 📗 You want to avoid duplication in the state content so you’re only tracking what is essential. Spending a little time on refactoring your state structure will make your components easier to understand, reduce duplication, and avoid unintended meanings.
+// change x,y at the same time then make them group state
+const [position, setPosition] = useState({ x: 0, y: 0 });
+```
 
-Here are some questions you can ask about your state variables:
+> 📗 if some two state variables always change together, it might be a good idea to unify them into a single state variable.
 
-- **Does this state cause a paradox?** A paradox usually means that the state is not constrained enough. There are four possible combinations of two booleans, but only three correspond to valid states.
-- **Is the same information available in another state variable already?**
-- **Can you get the same information from the inverse of another state variable?**
+## 💥 Avoid Contradictions in State
 
-## 🛜 Connect the event handlers to set state
+## 📚 Avoid Redundant State
 
-> 📗 Lastly, create event handlers that update the state. Below is the final form, with all event handlers wired up:
+> 📗 If you can calculate some information from the component’s props or its existing state variables during rendering, you should not put that information into that component’s state.
+
+```jsx
+const [firstName, setFirstName] = useState("");
+const [lastName, setLastName] = useState("");
+const [fullName, setFullName] = useState(""); // this is redundant
+```
+
+> 📗 **”Mirroring”** props into state only makes sense when you want to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
+
+## 🔍 Avoid Duplication in State
