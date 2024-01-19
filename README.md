@@ -1,17 +1,15 @@
-# Module 3 : 3.7 : Choosing the State Structure - Avoid Duplication in State
+# Module 3 : 3.8 : Choosing the State Structure - Avoid Deeply Nested state
 
-## 🔍 Avoid Duplication in State
+## 📚 Avoid Deeply Nested State
 
-**Example of duplication state :**
+> 📗 Normalization is the process of organizing data in a database. It includes creating tables and establishing relationships between those tables according to rules designed both to protect the data and to make the database more flexible by eliminating redundancy and inconsistent dependency.
 
-```jsx
-const [items, setItems] = useState(initialItems);
-const [selectedItem, setSelectedItem] = useState(initialItems[0]);
+### Recap
 
-// don't do that, cause selectedItem is on of
-// the item of items.
-
-// do this :
-const [items, setItems] = useState(initialItems);
-const [selectedId, setSelectedId] = useState(0);
-```
+- If two state variables always update together, consider merging them into one.
+- Choose your state variables carefully to avoid creating “impossible” states.
+- Structure your state in a way that reduces the chances that you’ll make a mistake updating it.
+- Avoid redundant and duplicate state so that you don’t need to keep it in sync.
+- Don’t put props into state unless you specifically want to prevent updates.
+- For UI patterns like selection, keep ID or index in state instead of the object itself.
+- If updating deeply nested state is complicated, try flattening it.
