@@ -1,13 +1,61 @@
-# Module 3 : 3.10 : Preserving and Resetting State - Default Behavior
+# Module 3 : 3.11 : Preserving and Resetting State - Changing Default Behavior
 
-## 📌 State is Tied to a Position in The Render Tree
+## 📌 Resetting State at The Same Position
 
-React builds render trees for the component structure in your UI.
+**First Clearify Something :**
 
-When you give a component state, you might think the state “lives” inside the component. But the state is actually held inside React. React associates each piece of state it’s holding with the correct component by where that component sits in the render tree
+```jsx
+// first case
+<div>
+    {
+    condition ? <A /> : <A p="a" />
+    {/* here render in one position in render tree */}
+    }
+</div>
+// at the same position render either <A /> or <A p='a' />, it will
+// preserve state cause it's same position.
+```
 
-## 📍 Same Component at The Same Position Preserves State
+```jsx
+// second case
+<div>
+  {condition && <A />} {/* either it render null or <A /> in render tree */}
+  {condition && <A p="a" />} {/* either it render null or <A p="a" /> in render tree */}
+</div>
+// <A/> and <A p="a" /> both are not the
+// same position in render tree
+```
 
-> 🔴 Remember that it’s the position in the UI tree—not in the JSX markup—that matters to React!
+**There is two ways to reset state when switching between them :**
 
-## 🧱 Different Components At the Same Position Reset State
+<details>
+<summary>2. Render components in different positions</summary>
+For example :
+
+```jsx
+<div>
+    { condition ? <A /> : <A p="a" /> }
+</div>
+// convert it to like below
+<div>
+  { condition && <A /> }
+  { condition && <A p="a" /> }
+</div>
+```
+
+</details>
+<details>
+<summary>1. Give each component an explicit identity with `key`</summary>
+
+For exmaple :
+
+```jsx
+<div>{condition ? <A /> : <A p="a" />}</div>
+
+// convert it to like below
+<div>
+    { condition ? <A key="1" /> : <A key="2" p="a" /> }
+</div>
+```
+
+</details>

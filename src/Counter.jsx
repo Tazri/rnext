@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Counter({ isFancy = false }) {
+export default function Counter({ isFancy = false, person = "Anonymous" }) {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
 
@@ -21,6 +21,7 @@ export default function Counter({ isFancy = false }) {
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
     >
+      <h2 className="text-2xl">{person}</h2>
       <h1 className="text-3xl">{score}</h1>
       <button
         onClick={() => setScore((s) => s + 1)}
