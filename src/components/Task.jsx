@@ -11,7 +11,7 @@ export default function Task({ task, onDeleteTask, onChangeTask }) {
             type="checkbox"
             id={task.id}
             className="cursor-pointer"
-            checked={task.done}
+            checked={task.done ? true : false}
             onChange={(e) => {
               onChangeTask({
                 ...task,
