@@ -1,54 +1,19 @@
-# Module 3 : 3.16 : Passing Data Deeply With Context - Introduction to Context API
+# Module 3 : 3.17 : Using and Providing Context from The Same Component
 
-## 🗒️ Step to Using Context
-
-<details>
-<summary>1. Create a Context</summary>
-Here syntax to create context :
-
-```jsx
-import { createContext } from "react";
-
-export const LevelContext = createContext("defaultValue");
-```
-
-</details>
-
-<details>
-<summary>2. Use the Context</summary>
-First import the context :
+> 📘 It's possible to use context where it is providing. For example :
 
 ```jsx
 import { useContext } from "react";
-import { LevelContext } from "./LevelContext .js";
-```
+import { LevelContext } from "./LevelContext";
 
-Read the context :
-
-```jsx
-export default function ComponentName() {
+export default function Section({ children }) {
   const level = useContext(LevelContext);
+  return (
+    <section className="m-4 border-2 p-4">
+      <LevelContext.Provider value={level + 1}>
+        {children}
+      </LevelContext.Provider>
+    </section>
+  );
 }
 ```
-
-</details>
-
-<details>
-<summary>3. Provide The Context</summary>
-Here provide the context to all child component :
-
-```jsx
-import { LevelContext } from "./LevelContext.js";
-
-export default function ParentComponent({ children }){
-    return (
-        <div>
-            <LevelContext.Provider value={Value}>
-                {children}
-            </LevelContext>
-        </div>
-    )
-}
-```
-
-</details>
