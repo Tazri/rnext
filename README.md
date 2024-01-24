@@ -1,20 +1,54 @@
-# Module 3 : 3.14 : Comparing `useState` and `useReducer` - How to write reducers well
+# Module 3 : 3.16 : Passing Data Deeply With Context - Introduction to Context API
 
-## ✒️ useImmerReducer
+## 🗒️ Step to Using Context
+
+<details>
+<summary>1. Create a Context</summary>
+Here syntax to create context :
 
 ```jsx
-import { useImmerReducer } from "use-immer";
+import { createContext } from "react";
 
-// inside the function :
-const [state, dispatch] = useImmerReducer(functionReducer,initialValue);
+export const LevelContext = createContext("defaultValue");
+```
 
-// updating state
-dispatch(actionObject)
+</details>
 
-// functionReducer prototype
-function functionReducer(draftState,actionObject){
-    // update the defatState or
-    // return the updated state
-    return updatedState.
+<details>
+<summary>2. Use the Context</summary>
+First import the context :
+
+```jsx
+import { useContext } from "react";
+import { LevelContext } from "./LevelContext .js";
+```
+
+Read the context :
+
+```jsx
+export default function ComponentName() {
+  const level = useContext(LevelContext);
 }
 ```
+
+</details>
+
+<details>
+<summary>3. Provide The Context</summary>
+Here provide the context to all child component :
+
+```jsx
+import { LevelContext } from "./LevelContext.js";
+
+export default function ParentComponent({ children }){
+    return (
+        <div>
+            <LevelContext.Provider value={Value}>
+                {children}
+            </LevelContext>
+        </div>
+    )
+}
+```
+
+</details>
