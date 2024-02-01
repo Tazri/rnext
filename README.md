@@ -1,5 +1,15 @@
-# Module 3 : 3.18 : Context passes through intermediate components
+# Module 3 : 3.19 : Some Notes and Use Cases for Context
 
-**Context lets you write components that “adapt to their surroundings” and display themselves differently depending on where (or, in other words, in which context) they are being rendered.**
+> 🔴 Context is very tempting to use! However, this also means it’s too easy to overuse it. Just because you need to pass some props several levels deep doesn’t mean you should put that information into context.
 
-How context works might remind you of CSS property inheritance. In CSS, you can specify color: blue for a <div>, and any DOM node inside of it, no matter how deep, will inherit that color unless some other DOM node in the middle overrides it with color: green. Similarly, in React, the only way to override some context coming from above is to wrap children into a context provider with a different value.
+**Here’s a few alternatives you should consider before using context:**
+
+1. Start by passing props.
+2. Extract components and pass JSX as children to them.
+
+**Use cases for context :**
+
+- Theming
+- Current Account
+- Routing
+- Managing state
