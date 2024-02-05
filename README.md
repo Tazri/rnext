@@ -1,28 +1,17 @@
-# Module 4 : 4.2 - Manipulating the DOM with Refs - Getting a ref to the node
+# Module 4 : 4.3 - Manipulating the DOM with Refs - Accessing Another Component's DOM Nodes
 
-## 🗒️ Getting Ref to The Node
+**Important Staff From React Document :**
 
-```jsx
-// first declare the ref
-const nodeRef = useRef(null);
+> React does not let a component access the DOM nodes of other components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating another component’s DOM nodes makes your code even more fragile.
 
-// in rendering
-// use `ref` attribute to store node into
-// ref
-// for example
-<div ref={nodeRef}></div>;
-
-// here nodeRef.current is div.
-```
-
-## 📢 Using a Ref Callback
+If need to access another dom component node then use `forwardRef` hooks. This is Higher Order Component. Syntax is :
 
 ```jsx
-<div
-  ref={(node) => {
-    // here node is div
-    // now we can do anything with
-    // nodeRef current object object here.
-  }}
-></div>
+const ForwarededComponent = forwardRef(Component);
+
+function Component(props, ref) {
+  // here ref is what pass from parent component.
+  // props is what pass from parent component.
+  // just use them safely.
+}
 ```
