@@ -1,39 +1,42 @@
 import { useRef, useState } from "react";
-import StopWatch from "./StopWatch";
+import CatFriends from "./CatFriends";
+import Cats from "./Cats";
 
 export default function App() {
-  const [count, setCount] = useState(0);
-  const ref = useRef(0);
+  const inputRef = useRef(null);
+  const [show, setShow] = useState(true);
 
-  function handleCount() {
-    setCount((c) => c + 1);
+  function handleClick() {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }
-
-  function handleRef() {
-    ref.current = ref.current + 1;
-    console.log(ref);
-  }
-
   return (
     <>
-      <div className="p-4 text-center flex-col flex items-center">
-        <h3 className="text-2xl">Ref Value is in UI : {ref.current}</h3>
-        <div className="flex gap-x-2 justify-center mt-4">
-          <button
-            className="bg-green-700 py-2 px-4 rounded-sm hover:bg-green-700/35"
-            onClick={handleCount}
-          >
-            Update Count State {count}
-          </button>
-          <button
-            className="bg-blue-700 py-2 px-4 rounded-sm hover:bg-blue-700/35"
-            onClick={handleRef}
-          >
-            Update Ref Value
-          </button>
-        </div>
+      <div className="p-4 bg-green-400 text-slate-900 flex w-1/2 mx-auto my-4 text-center justify-center gap-x-3">
+        <input
+          ref={inputRef}
+          placeholder="Please enter the text..."
+          className="p-2 outline-3 focus:outline-slate-900 border-none ring-offset-0 transition-all  outline-none"
+        />
+        <button
+          onClick={handleClick}
+          className="py-2 px-4 bg-slate-900 text-white"
+        >
+          Focus the Input
+        </button>
+      </div>
 
-        <StopWatch />
+      <Cats />
+
+      <div className="flex flex-col items-center p-5">
+        {show && <CatFriends />}
+        <button
+          className="py-2 px-4 bg-red-800"
+          onClick={() => setShow((s) => !s)}
+        >
+          {show ? "Hide" : "Show"}
+        </button>
       </div>
     </>
   );
