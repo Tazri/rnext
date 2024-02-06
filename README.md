@@ -1,16 +1,18 @@
-# Module 4 : 4.4 - Exposing a Subset of The API With an Imperative handle
+# Module 4 : 4.4 - When React Attaches The Refs & Best Practice for DOM Manipulation with Refs
 
-## `useImperativeHandle`
+## ❓ When React Attaches The Refs
 
-> 📗 `useImperativeHandle` nstructs React to provide your own special object as the value of a ref to the parent component. So inputRef.current inside the Form component will only have the focus method. In this case, the ref “handle” is not the DOM node, but the custom object you create inside `useImperativeHandle` call.
+In React, every update is split in two phases:
 
-```jsx
-forwardRef((props, ref) => {
-  useImperativeHandle(ref, () => {
-    return {
-      // define the method
-    }; // this object will replace with ref.current value
-    // which is come from parent.
-  });
-});
-```
+- During render, React calls your components to figure out what should be on the screen.
+- During commit, React applies changes to the DOM.
+
+In general, you don’t want to access refs during rendering. React sets ref.current during the commit. Usually, you will access refs from event handlers.
+
+## 💡 Best Practice for DOM Manipulation with Refs
+
+Refs are an escape hatch. You should only use them when you have to “step outside React”. Common examples of this include managing focus, scroll position, or calling browser APIs that React does not expose.
+
+If you stick to non-destructive actions like focusing and scrolling, you shouldn’t encounter any problems. However, if you try to modify the DOM manually, you can risk conflicting with the changes React is making.
+
+To illustrate this problem, this example includes a welcome message and two buttons. The first button toggles its presence using conditional rendering and state, as you would usually do in React. The second button uses the remove() DOM API to forcefully remove it from the DOM outside of React’s control.
