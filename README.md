@@ -1,17 +1,16 @@
-# Module 4 : 4.3 - Manipulating the DOM with Refs - Accessing Another Component's DOM Nodes
+# Module 4 : 4.4 - Exposing a Subset of The API With an Imperative handle
 
-**Important Staff From React Document :**
+## `useImperativeHandle`
 
-> React does not let a component access the DOM nodes of other components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating another component’s DOM nodes makes your code even more fragile.
-
-If need to access another dom component node then use `forwardRef` hooks. This is Higher Order Component. Syntax is :
+> 📗 `useImperativeHandle` nstructs React to provide your own special object as the value of a ref to the parent component. So inputRef.current inside the Form component will only have the focus method. In this case, the ref “handle” is not the DOM node, but the custom object you create inside `useImperativeHandle` call.
 
 ```jsx
-const ForwarededComponent = forwardRef(Component);
-
-function Component(props, ref) {
-  // here ref is what pass from parent component.
-  // props is what pass from parent component.
-  // just use them safely.
-}
+forwardRef((props, ref) => {
+  useImperativeHandle(ref, () => {
+    return {
+      // define the method
+    }; // this object will replace with ref.current value
+    // which is come from parent.
+  });
+});
 ```
