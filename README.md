@@ -1,18 +1,14 @@
-# Module 4 : 4.4 - When React Attaches The Refs & Best Practice for DOM Manipulation with Refs
+# Module 4 : 4.6 - Flushing State Updates Synchronously With FlushSync
 
-## ❓ When React Attaches The Refs
+## 📸 `flushSync`
 
-In React, every update is split in two phases:
+In React, state updates are queued. Usually, this is what you want. However, here it causes a problem because setTodos does not immediately update the DOM. So the time you scroll the list to its last element, the todo has not yet been added. This is why scrolling always “lags behind” by one item.
 
-- During render, React calls your components to figure out what should be on the screen.
-- During commit, React applies changes to the DOM.
+To fix this issue, you can force React to update (“flush”) the DOM synchronously. To do this, import `flushSync` from `react-dom` and wrap the state update into a flushSync call:
 
-In general, you don’t want to access refs during rendering. React sets ref.current during the commit. Usually, you will access refs from event handlers.
-
-## 💡 Best Practice for DOM Manipulation with Refs
-
-Refs are an escape hatch. You should only use them when you have to “step outside React”. Common examples of this include managing focus, scroll position, or calling browser APIs that React does not expose.
-
-If you stick to non-destructive actions like focusing and scrolling, you shouldn’t encounter any problems. However, if you try to modify the DOM manually, you can risk conflicting with the changes React is making.
-
-To illustrate this problem, this example includes a welcome message and two buttons. The first button toggles its presence using conditional rendering and state, as you would usually do in React. The second button uses the remove() DOM API to forcefully remove it from the DOM outside of React’s control.
+```jsx
+flushSync(() => {
+  // update state here
+});
+listRef.current.doAnythingWithDOM();
+```
