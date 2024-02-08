@@ -1,44 +1,7 @@
-# Module 4 : 4.8 - Synchronizing with Effects - How to Write an Effect
+# Module 4 : 4.9 - Synchronizing with Effects - Handling Effects Firing Twice in Development
 
-## 🖊️ How to Write Effect
+React intentionally remounts your components in development to find bugs like in the last example. The right question isn’t “how to run an Effect once”, but “how to fix my Effect so that it works after remounting”.
 
-Here how to write effect :
+Usually, the answer is to implement the cleanup function. The cleanup function should stop or undo whatever the Effect was doing. The rule of thumb is that the user shouldn’t be able to distinguish between the Effect running once (as in production) and a setup → cleanup → setup sequence (as you’d see in development).
 
-```jsx
-import { useEffect } from "react";
-
-function MyComponent() {
-  useEffect(() => {
-    // Code here will run after *every* render
-  });
-  return <div />;
-}
-```
-
-## 📝 When Render useEffect
-
-```jsx
-useEffect(() => {
-  // This runs after every render
-});
-
-useEffect(() => {
-  // This runs only on mount (when the component appears)
-}, []);
-
-useEffect(() => {
-  // This runs on mount *and also* if either a or b have changed since the last render
-}, [a, b]);
-```
-
-## 🧹 Add Cleanup If Needed
-
-```jsx
-useEffect(() => {
-  return () => {
-    // this function
-    // will call
-    // after component unmount
-  };
-});
-```
+Most of the Effects you’ll write will fit into one of the common patterns below.
