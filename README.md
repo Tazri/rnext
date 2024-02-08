@@ -1,9 +1,44 @@
-# Module 4 : 4.7 - Synchronizing with Effects - Overview of Effects vs Events
+# Module 4 : 4.8 - Synchronizing with Effects - How to Write an Effect
 
 ## 🖊️ How to Write Effect
 
-- **Declare an Effect.** By default, your Effect will run after every render.
-- **Specify the Effect dependencies.** Most Effects should only re-run when needed rather than after every render.
-- **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing.
+Here how to write effect :
 
-> 🔴 Don’t rush to add Effects to your components.
+```jsx
+import { useEffect } from "react";
+
+function MyComponent() {
+  useEffect(() => {
+    // Code here will run after *every* render
+  });
+  return <div />;
+}
+```
+
+## 📝 When Render useEffect
+
+```jsx
+useEffect(() => {
+  // This runs after every render
+});
+
+useEffect(() => {
+  // This runs only on mount (when the component appears)
+}, []);
+
+useEffect(() => {
+  // This runs on mount *and also* if either a or b have changed since the last render
+}, [a, b]);
+```
+
+## 🧹 Add Cleanup If Needed
+
+```jsx
+useEffect(() => {
+  return () => {
+    // this function
+    // will call
+    // after component unmount
+  };
+});
+```
