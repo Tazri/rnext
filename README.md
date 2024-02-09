@@ -1,12 +1,11 @@
-# Module 4 : 4.15 - You Might Not Need an Effect - Fetching Data - Avoid Race Condition
+# Module 4 : 4.16 - The lifecycle of an Effect
 
-## ☕ Recap :
+**Every React component goes through the same lifecycle:**
 
-- If you can calculate something during render, you don’t need an Effect.
-- To cache expensive calculations, add useMemo instead of useEffect.
-- To reset the state of an entire component tree, pass a different key to it.
-- To reset a particular bit of state in response to a prop change, set it during rendering.
-- Code that runs because a component was displayed should be in Effects, the rest should be in events.
-- If you need to update the state of several components, it’s better to do it during a single event.
-- Whenever you try to synchronize state variables in different components, consider lifting state up.
-- You can fetch data with Effects, but you need to implement cleanup to avoid race conditions.
+- A component mounts when it’s added to the screen.
+- A component updates when it receives new props or state, usually in response to an interaction.
+- A component unmounts when it’s removed from the screen.
+
+> 🔴 It’s a good way to think about components, but not about Effects.
+
+> 📕 Some Effects don’t return a cleanup function at all. More often than not, you’ll want to return one—but if you don’t, React will behave as if you returned an empty cleanup function.
