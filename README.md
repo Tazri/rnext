@@ -1,22 +1,3 @@
-# Module 4 : 4.10 - Synchronizing with Effects - Fetching Data
+# Module 4 : 4.11 - Synchronizing with Effects - Putting All Together in One Example
 
-**A Pattern for fetching data using `useState` :**
-
-```jsx
-useEffect(() => {
-  let ignore = false;
-
-  async function startFetching() {
-    const json = await fetchTodos(userId);
-    if (!ignore) {
-      setTodos(json);
-    }
-  }
-
-  startFetching();
-
-  return () => {
-    ignore = true;
-  };
-}, [userId]);
-```
+In this lesson just learning how useEffect work synchronizingly.
