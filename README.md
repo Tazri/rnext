@@ -1,9 +1,3 @@
-# Module 4 : 4.12 - You Might Not Need an Effect - Initial Three Examples
+# Module 4 : 4.13 - You Might Not Need an Effect - More Three Examples
 
-**There are two common cases in which you don’t need Effects:**
-
-- You don’t need Effects to transform data for rendering.
-- You don’t need Effects to handle user events.
-- Updating state based on props or state
-- Resetting all state when a prop changes
-- Adjusting some state when a prop changes
+> When you’re not sure whether some code should be in an Effect or in an event handler, ask yourself why this code needs to run. Use Effects only for code that should run because the component was displayed to the user.
