@@ -1,11 +1,3 @@
-# Module 4 : 4.16 - The lifecycle of an Effect
+# Module 4 : 4.17 - Effects react to reactive values
 
-**Every React component goes through the same lifecycle:**
-
-- A component mounts when it’s added to the screen.
-- A component updates when it receives new props or state, usually in response to an interaction.
-- A component unmounts when it’s removed from the screen.
-
-> 🔴 It’s a good way to think about components, but not about Effects.
-
-> 📕 Some Effects don’t return a cleanup function at all. More often than not, you’ll want to return one—but if you don’t, React will behave as if you returned an empty cleanup function.
+> Props and state aren’t the only reactive values. Values that you calculate from them are also reactive. If the props or state change, your component will re-render, and the values calculated from them will also change. This is why all variables from the component body used by the Effect should be in the Effect dependency list.
