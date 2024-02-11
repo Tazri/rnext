@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { createConnection } from "./utils/connection";
 
 const serverUrl = "server 1";
 
 export default function ChatRoom({ roomId }) {
   const [text, setText] = useState("");
+
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
 
     connection.connect();
+    toast.success("Connected With : " + roomId);
 
     return () => {
       connection.disconnect();
