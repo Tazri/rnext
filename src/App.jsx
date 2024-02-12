@@ -1,72 +1,69 @@
-import { useState } from "react";
-import { Slide, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import ChatRoom from "./ChatRoom";
-import DropDown from "./DropDown";
+import {
+  useEffect,
+  experimental_useEffectEvent as useEffectEvent,
+  useState,
+} from "react";
 
 export default function App() {
-  const [room, setRoom] = useState("general");
-  const [show, setShow] = useState(false);
-  const [theme, setTheme] = useState("dark");
-  const roomsIdOptions = {
-    general: "General",
-    travel: "Travel",
-    education: "Education",
-    games: "Games",
-    sports: "Sports",
-  };
+  const [canMove, setCanMove] = useState(true);
+  const [position, setPosition] = useState({
+    x: 0,
+    y: 0,
+  });
 
-  function handleTheme() {
-    setTheme((t) => (t == "dark" ? "light" : "dark"));
-  }
+  const onMove = useEffectEvent((e) => {
+    if (canMove) {
+      setPosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
+    }
+  });
+
+  useEffect(() => {
+    console.count();
+    window.addEventListener("pointermove", onMove);
+
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
-      <div className="w-1/2 mx-auto p-3 text-center flex flex-col gap-y-4 ">
-        <div className="flex flex-row gap-x-5 justify-center">
-          <button
-            className="py-2 px-4 bg-rose-600"
-            onClick={() => setShow((s) => !s)}
-          >
-            Mount ChatRoom
-          </button>
-
-          <button
-            className="py-2 px-4 bg-teal-800"
-            onClick={() => console.clear()}
-          >
-            Clear Console
-          </button>
-
-          <DropDown
-            onChange={(room) => {
-              setRoom(room);
-            }}
-            options={roomsIdOptions}
+      <div className="w-1/2 mx-auto p-3 text-left flex flex-col gap-y-1">
+        <label className="text-xl cursor-pointer" htmlFor="canMove">
+          <input
+            type="checkbox"
+            className="mr-2 cursor-pointer"
+            id="canMove"
+            checked={canMove}
+            onChange={(e) => setCanMove(e.target.checked)}
           />
-          <button
-            className="py-2 px-4"
-            style={{
-              backgroundColor: theme == "dark" ? "black" : "white",
-              color: theme == "dark" ? "white" : "black",
-            }}
-            onClick={handleTheme}
-          >
-            {theme}
-          </button>
-        </div>
+          Can Move ?
+        </label>
+        <hr />
 
-        {show && (
-          <ChatRoom theme={theme} key={room} roomId={roomsIdOptions[room]} />
-        )}
+        <button className="button mt-4" onClick={() => console.clear()}>
+          Clear Console
+        </button>
+
+        <div
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "50%",
+            backgroundColor: "crimson",
+            position: "absolute",
+            left: "-25px",
+            top: "-25px",
+            pointerEvents: "none",
+            opacity: "0.5",
+            transform: `translate(${position.x}px,${position.y}px)`,
+          }}
+        ></div>
       </div>
-      <ToastContainer
-        position="bottom-right"
-        closeOnClick={true}
-        autoClose={2000}
-        transition={Slide}
-        limit={1}
-      />
     </>
   );
 }

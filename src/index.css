@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
+
+.button {
+  @apply py-2 px-4 bg-emerald-700 focus:outline-none text-white;
+}
