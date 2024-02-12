@@ -66,7 +66,6 @@ export default function App() {
         autoClose={2000}
         transition={Slide}
         limit={1}
-        theme={theme}
       />
     </>
   );

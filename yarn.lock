@@ -2165,13 +2165,13 @@ queue-microtask@^1.2.2:
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-react-dom@^18.2.0:
-  version "18.2.0"
-  resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
-  integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
+react-dom@^0.0.0-experimental-03d6f7cf0-20240209:
+  version "0.0.0-experimental-03d6f7cf0-20240209"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-experimental-03d6f7cf0-20240209.tgz#5c69c40d3064609ae7647ad84ea0f1875ea67fb2"
+  integrity sha512-1uzrmAAocMdjtxEg+vAXmIbIOBeoASF9/AGCJwV1240nO4AMypa4sIPCr9a97q/9HXbK21OoUSRJg2vp36YxYg==
   dependencies:
     loose-envify "^1.1.0"
-    scheduler "^0.23.0"
+    scheduler "0.0.0-experimental-03d6f7cf0-20240209"
 
 react-is@^16.13.1:
   version "16.13.1"
@@ -2190,10 +2190,10 @@ react-toastify@^10.0.4:
   dependencies:
     clsx "^2.1.0"
 
-react@^18.2.0:
-  version "18.2.0"
-  resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
-  integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
+react@^0.0.0-experimental-03d6f7cf0-20240209:
+  version "0.0.0-experimental-03d6f7cf0-20240209"
+  resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-experimental-03d6f7cf0-20240209.tgz#815d0b2f9d201ab778fce79510a30b0670911242"
+  integrity sha512-Xf1FGuqc1/aNlApdvMzHKZ5R5+CAEn0BAdpIwaZkp9/4sWOqEdl7NKBdwRf5HBejsCMUHZV71dfuKz+e9x4Elw==
   dependencies:
     loose-envify "^1.1.0"
 
@@ -2315,10 +2315,10 @@ safe-regex-test@^1.0.0:
     get-intrinsic "^1.2.2"
     is-regex "^1.1.4"
 
-scheduler@^0.23.0:
-  version "0.23.0"
-  resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.23.0.tgz"
-  integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
+scheduler@0.0.0-experimental-03d6f7cf0-20240209:
+  version "0.0.0-experimental-03d6f7cf0-20240209"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-experimental-03d6f7cf0-20240209.tgz#e6bf6edd5802302928e039133e424ba7a072dda0"
+  integrity sha512-QR5Q5dHepWKd4p0mNxWw0J1lxtYUgt46QPaR5bsz88y9+2MDHsyGTUpImKIsdbqYxeiPass1zBllnXIUJ+CIMA==
   dependencies:
     loose-envify "^1.1.0"
 
@@ -2378,6 +2378,7 @@ source-map-js@^1.0.2:
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==

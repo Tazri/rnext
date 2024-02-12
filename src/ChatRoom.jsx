@@ -1,21 +1,31 @@
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  experimental_useEffectEvent as useEffectEvent,
+  useState,
+} from "react";
 import { toast } from "react-toastify";
 import { createConnection } from "./utils/connection";
 
 const serverUrl = "server 1";
 
-export default function ChatRoom({ roomId }) {
+export default function ChatRoom({ theme, roomId }) {
   const [text, setText] = useState("");
+  const notify = useEffectEvent((id) => {
+    toast.success("Connected With : " + id, {
+      theme: theme,
+    });
+  });
 
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
 
     connection.connect();
-    toast.success("Connected With : " + roomId);
+    notify(roomId);
 
     return () => {
       connection.disconnect();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
   return (
