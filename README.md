@@ -1,4 +1,4 @@
-# Module 4 : 4.21 - Removing Effect Dependencies - Part 2
+# Module 4 : 4.22 - Removing Effect Dependencies - Part 2
 
 ## ☕ Recap
 
