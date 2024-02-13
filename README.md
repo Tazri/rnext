@@ -1,16 +1,5 @@
-# Module 4 : 4.20 - Separting Events from Effects - Part 3
+# Module 4 : 4.21 - Removing Effect Dependencies - Part 1
 
-## ❌ Effect Events are very limited in how you can use them:
+## 🧹 To remove a dependency, prove that it’s not a dependency
 
-- Only call them from inside Effects.
-- Never pass them to other components or Hooks.
-
-## ☕ Recap
-
-- Event handlers run in response to specific interactions.
-- Effects run whenever synchronization is needed.
-- Logic inside event handlers is not reactive.
-- Logic inside Effects is reactive.
-- You can move non-reactive logic from Effects into Effect Events.
-- Only call Effect Events from inside Effects.
-- Don’t pass Effect Events to other components or Hooks.
+Notice that you can’t “choose” the dependencies of your Effect. Every reactive value used by your Effect’s code must be declared in your dependency list.

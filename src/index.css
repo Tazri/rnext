@@ -3,5 +3,29 @@
 @tailwind components;
 
 .button {
-  @apply py-2 px-4 bg-emerald-700 focus:outline-none text-white;
+  @apply py-2 px-4 focus:outline-none text-white;
+}
+
+.button-success {
+  @apply bg-emerald-700 disabled:bg-emerald-300;
+}
+
+.button-failed {
+  @apply bg-rose-700 disabled:bg-zinc-700;
+}
+
+.button-orange {
+  @apply bg-orange-700;
+}
+
+.button-zinc {
+  @apply bg-zinc-800;
+}
+
+.button-black {
+  @apply bg-black;
+}
+
+.button-circle_mini {
+  @apply size-9 rounded-full;
 }
