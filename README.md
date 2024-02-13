@@ -1,14 +1,18 @@
-# Module 4 : 4.22 - Removing Effect Dependencies - Part 2
+# Module 4 : 4.23 - Reusing Logic with Custom Hooks - Part 1
 
-## ☕ Recap
+## ✒️ Hook names always start with `use `
 
-- Dependencies should always match the code.
-- When you’re not happy with your dependencies, what you need to edit is the code.
-- Suppressing the linter leads to very confusing bugs, and you should always avoid it.
-- To remove a dependency, you need to “prove” to the linter that it’s not necessary.
-- If some code should run in response to a specific interaction, move that code to an event handler.
-- If different parts of your Effect should re-run for different reasons, split it into several Effects.
-- If you want to update some state based on the previous state, pass an updater function.
-- If you want to read the latest value without “reacting” it, extract an Effect Event from your Effect.
-- In JavaScript, objects and functions are considered different if they were created at different times.
-- Try to avoid object and function dependencies. Move them outside the component or inside the Effect.
+React applications are built from components. Components are built from Hooks, whether built-in or custom. You’ll likely often use custom Hooks created by others, but occasionally you might write one yourself!
+
+You must follow these naming conventions:
+
+<details>
+<summary><b>React component names must start with a capital letter</b></summary>
+like StatusBar and SaveButton. React components also need to return something that React knows how to display, like a piece of JSX.
+</details>
+
+<<details>
+
+<summary><b>Hook names must start with use followed by a capital letter</b></summary>
+like useState (built-in) or useOnlineStatus (custom, like earlier on the page). Hooks may return arbitrary values.
+</details>
