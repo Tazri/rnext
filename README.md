@@ -1,7 +1,7 @@
-# Module 4 : 4.25 - Reusing Logic with Custom Hooks - Part 3
+# Module 4 : 4.26 - Reusing Logic with Custom Hooks - Part 4
 
-Ideally, your custom Hook’s name should be clear enough that even a person who doesn’t write code often could have a good guess about what your custom Hook does, what it takes, and what it returns:
+This is another reason for why wrapping Effects in custom Hooks is often beneficial:
 
-- ✅ useData(url)
-- ✅ useImpressionLog(eventName, extraData)
-- ✅ useChatRoom(options)
+- You make the data flow to and from your Effects very explicit.
+- You let your components focus on the intent rather than on the exact implementation of your Effects.
+- When React adds new features, you can remove those Effects without changing any of your components.
