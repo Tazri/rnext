@@ -1,13 +1,25 @@
-# Module 4 : 4.27 - Reusing Logic with Custom Hooks - Part 5
+# Module 4 : 4.28 - Performance Optimization
 
-## ☕ Recap
+## 🧠 React.memo
 
-- Custom Hooks let you share logic between components.
-- Custom Hooks must be named starting with use followed by a capital letter.
-- Custom Hooks only share stateful logic, not state itself.
-- You can pass reactive values from one Hook to another, and they stay up-to-date.
-- All Hooks re-run every time your component re-renders.
-  The code of your custom Hooks should be pure, like your component’s code.
-- Wrap event handlers received by custom Hooks into Effect Events.
-- Don’t create custom Hooks like useMount. Keep their purpose specific.
-- It’s up to you how and where to choose the boundaries of your code.
+`React.memo` is higher order function which is take a component and return another component. Return component render first time, then it will render if only if **state** or **prop** change.
+
+```jsx
+React.memo(component);
+```
+
+## 📢 `useCallback`
+
+`useCallback` take function and return a function which reference never change until dependencies change.
+
+```jsx
+const func = useCallback(function,[depenencies_array])
+```
+
+## 🧠 `useMemo`
+
+`useMemo` take a function calculate the return value and store it and memorize with parameter for next time. If dependencies change then call the function again.
+
+```jsx
+const result = useMemo(func, [dependencies]);
+```
