@@ -1,17 +1,8 @@
-# Module 4 : 4.20 - Project - Weather Dashboard
+# React + Vite
 
-## 🎥 Preview
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-| [![preview](./for_readme/preview.png)](https://weather-dashboard-amber.vercel.app/ "🚀 Go to site")    |
-| ------------------------------------------------------------------------------------------------------ |
-| <p align="center"><font size=5>[🚀 Go To Site](https://weather-dashboard-amber.vercel.app/)</font></p> |
+Currently, two official plugins are available:
 
-### [Code Link](https://github.com/ansanonymo/weather-dashboard)
-
-## 🖥️ UI Component
-
-![UI Component](./for_readme/ui_component.jpg)
-
-## 🌳 Component Render Tree
-
-![Component Rener Tree](./for_readme/component_render_tree.jpg)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
