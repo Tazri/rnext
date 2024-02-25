@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "dsf",
+      "body": "sdfads"
+    },
+    {
+      "id": "2",
+      "title": "Titile",
+      "body": "This is body"
+    }
+  ],
+  "tags": [
+    {
+      "id": "1",
+      "title": "Programming"
+    }
+  ]
+}
