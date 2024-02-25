@@ -59,7 +59,7 @@ export default function App() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await api.get("posts");
+        const response = await api.get("post");
 
         if (response && response.data) {
           setPosts(response.data);
