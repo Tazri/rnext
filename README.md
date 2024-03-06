@@ -1,3 +1,3 @@
-## React Query
+# React Hook
 
-complete the video not complete the react query.
+Complete video, not complete react hook.
