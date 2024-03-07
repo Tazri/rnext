@@ -1,3 +1,3 @@
-# React Hook
+# React Suspense and Error Boundaries
 
-Complete video, not complete react hook.
+Understanding suspense and error boundaries.
