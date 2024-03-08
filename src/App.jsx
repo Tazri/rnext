@@ -1,58 +1,54 @@
 import { Suspense, useState } from "react";
-import { ErrorBoundary } from "react-error-boundary";
-import Comments from "./components/Comments";
-import PostsSelector from "./components/PostsSelector";
+import { demos } from "./data/demos";
+import importDemo from "./utils/importDemo";
 
 function App() {
-  const [selectedPostId, setSelectedPostId] = useState(null);
+  const [selectedDemo, setSelectedDemo] = useState(null);
 
-  const handleSelectPost = (e) => {
-    setSelectedPostId(e.target.value);
+  const loadDemo = async (file) => {
+    const Demo = await importDemo(file);
+
+    return <Demo />;
+  };
+
+  const selectDemo = async (file) => {
+    const Demo = await loadDemo(file);
+
+    setSelectedDemo(Demo);
   };
 
   return (
     <div>
-      <h1 className="text-center text-4xl my-4">
-        React Suspense and Error Boundaries
-      </h1>
+      <div className="text-center">
+        <h1 className="text-3xl py-3">React Lazy Load explained</h1>
 
-      <div className="w-[60%] mx-auto my-3 flex flex-col gap-y-4">
-        <ErrorBoundary
+        <div className="flex gap-x-5 justify-center">
+          {demos.map((demo) => {
+            return (
+              <button
+                key={demo.name}
+                onClick={() => {
+                  selectDemo(demo.file);
+                }}
+                className="py-2 px-4 bg-rose-800 text-white"
+              >
+                {demo.name}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="border-t-2 mt-5 pt-10">
+        <Suspense
           fallback={
-            <h1 className="my-2 py-2 text-center text-3xl bg-rose-950 text-white">
-              Error Fetching Posts
+            <h1 className="text-center bg-black text-white py-2 text-3xl">
+              Data is Loading...
             </h1>
           }
         >
-          <Suspense
-            fallback={
-              <h1 className="my-2 py-2 text-center text-3xl bg-slate-950 text-white">
-                Loading Post..........
-              </h1>
-            }
-          >
-            <PostsSelector onSelectPost={handleSelectPost} />
-          </Suspense>
-        </ErrorBoundary>
-        {selectedPostId && (
-          <ErrorBoundary
-            fallback={
-              <h1 className="my-2 py-2 text-center text-3xl bg-rose-950 text-white">
-                Error Fetching Comments
-              </h1>
-            }
-          >
-            <Suspense
-              fallback={
-                <h1 className="my-2 py-2 text-center text-3xl bg-slate-950 text-white">
-                  Loading Comments..........
-                </h1>
-              }
-            >
-              <Comments postId={selectedPostId} />
-            </Suspense>
-          </ErrorBoundary>
-        )}
+          {selectedDemo}
+        </Suspense>
       </div>
     </div>
   );

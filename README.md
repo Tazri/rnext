@@ -1,3 +1,1 @@
-# React Suspense and Error Boundaries
-
-Understanding suspense and error boundaries.
+# Lazy Load Explained
