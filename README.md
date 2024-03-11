@@ -1,1 +1,1 @@
-# Lazy Load Explained
+# Animation in React with Framer Motion
