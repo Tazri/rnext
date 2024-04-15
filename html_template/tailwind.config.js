@@ -1,8 +1,7 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
-import typograpphy from "@tailwindcss/typography";
-
-export default {
-  content: ["./index.html", "./src/**/*.{css,js,jsx,ts,tsx}"],
+module.exports = {
+  content: ["./dist/**/*.{html,js}",'./dist/assets/icons/*.svg'],
   theme: {
     container: {
       center: true,
@@ -20,5 +19,5 @@ export default {
       },
     },
   },
-  plugins: [typograpphy],
+  plugins: [require("@tailwindcss/typography")],
 };
