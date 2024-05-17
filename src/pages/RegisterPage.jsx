@@ -1,3 +1,5 @@
 export default function RegisterPage() {
-  return <h1 className="text-center text-3xl  my-3">Register Page</h1>;
+  return (
+    <h1 className="text-3xl text-center my-2 text-whtie">Register Page</h1>
+  );
 }

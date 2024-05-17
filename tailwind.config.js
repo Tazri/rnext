@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import typograpphy from "@tailwindcss/typography";
+import typography from "@tailwindcss/typography";
 
 export default {
   content: ["./index.html", "./src/**/*.{css,js,jsx,ts,tsx}"],
@@ -20,5 +20,5 @@ export default {
       },
     },
   },
-  plugins: [typograpphy],
+  plugins: [typography],
 };
