@@ -1,5 +1,3 @@
 export default function NotFoundPage() {
-  return (
-    <h1 className="text-3xl text-center my-2 text-whtie">Not Found Page</h1>
-  );
+  return <h1>Not Found Page</h1>;
 }

@@ -1,22 +1,19 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProfilePage from "./pages/ProfilePage";
-import RegisterPage from "./pages/RegisterPage";
-import { PrivateRoute } from "./routes/PrivateRoute";
+import RegistrationPage from "./pages/RegistrationPage";
 
 export default function App() {
   return (
     <>
       <Routes>
-        <Route element={<PrivateRoute />}>
-          <Route element={<HomePage />} path="/" exact />
-          <Route element={<ProfilePage />} path="/me" />
-        </Route>
-        <Route element={<LoginPage />} path="/login" />
-        <Route element={<RegisterPage />} path="/register" />
-        <Route element={<NotFoundPage />} path="*" />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/me" element={<ProfilePage />} />
+        <Route path="/registration" element={<RegistrationPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
