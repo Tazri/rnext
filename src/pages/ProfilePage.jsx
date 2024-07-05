@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { actions } from "../action/index.js";
+import MyPosts from "../components/profile/MyPosts.jsx";
+import ProfileInfo from "../components/profile/ProfileInfo.jsx";
 import useAuth from "../hooks/useAuth.js";
 import { useAxios } from "./../hooks/useAxios.js";
+import { useProfile } from "./../hooks/useProfile.js";
 
-export default function ProfilePage() {
-  const [user, setUser] = useState(null);
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+function ProfilePage() {
+  const { state, dispatch } = useProfile();
   const { auth } = useAuth();
 
   const api = useAxios();
@@ -19,33 +19,35 @@ export default function ProfilePage() {
           `${import.meta.env.VITE_SERVER_BASE_URL}/profile/${auth?.user?.id}`
         );
 
-        setUser(res?.data.user);
-        setPosts(res?.data.posts);
+        if (res.status === 200) {
+          dispatch({ type: actions.profile.DATA_FETCHED, data: res.data });
+        }
       } catch (err) {
-        console.error(err);
-        setError(err);
-      } finally {
-        setLoading(false);
+        dispatch({
+          type: actions.profile.DATA_FETCH_ERROR,
+          error: err.message,
+        });
       }
     };
 
-    setLoading(true);
+    dispatch({ type: actions.profile.DATA_FETCHING });
     fetchProfile();
   }, []);
 
-  if (loading) {
+  if (state?.loading) {
     return <h1>Fetching</h1>;
   }
 
-  if (error) {
+  if (state?.error) {
     return <h1>Something is wrong</h1>;
   }
 
   return (
-    <div>
-      <h1>{user?.firstName}</h1>
-      <h1>You have {posts.length} posts</h1>
-      <Link to="/">Home</Link>
-    </div>
+    <>
+      <ProfileInfo />
+      <MyPosts />
+    </>
   );
 }
+
+export default ProfilePage;
