@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { useProfile } from "../../hooks/useProfile";
+import useProfile from "../../hooks/useProfile";
 import Logout from "../auth/Logout";
 import HomeIcon from "./../../assets/icons/home.svg";
 import NotificationIcon from "./../../assets/icons/notification.svg";

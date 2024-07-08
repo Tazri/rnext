@@ -4,7 +4,7 @@ import MyPosts from "../components/profile/MyPosts.jsx";
 import ProfileInfo from "../components/profile/ProfileInfo.jsx";
 import useAuth from "../hooks/useAuth.js";
 import { useAxios } from "./../hooks/useAxios.js";
-import { useProfile } from "./../hooks/useProfile.js";
+import useProfile from "./../hooks/useProfile.js";
 
 function ProfilePage() {
   const { state, dispatch } = useProfile();

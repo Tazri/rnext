@@ -5,4 +5,4 @@ function useProfile() {
   return useContext(ProfileContext);
 }
 
-export { useProfile };
+export default useProfile;

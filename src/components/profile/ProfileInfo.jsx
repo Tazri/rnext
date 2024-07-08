@@ -1,4 +1,4 @@
-import { useProfile } from "../../hooks/useProfile";
+import useProfile from "../../hooks/useProfile";
 import Bio from "./Bio";
 import ProfileImage from "./ProfileImage";
 

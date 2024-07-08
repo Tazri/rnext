@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { actions } from "../../action";
 import { useAxios } from "../../hooks/useAxios";
-import { useProfile } from "../../hooks/useProfile";
+import useProfile from "../../hooks/useProfile";
 import EditIcon from "./../../assets/icons/edit.svg";
 import DemoImage from "./../../assets/images/avatars/avatar_1.png";
 
