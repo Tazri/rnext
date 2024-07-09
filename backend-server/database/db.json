@@ -514,6 +514,47 @@
       "avatar": "uploads/avatar/avatar-1708802845791-219561000.png",
       "email": "rambo@email.com",
       "bio": "I am Rambo!!!"
+    },
+    {
+      "id": "63cf173e-1fb5-40ae-9573-d4a34947aec8",
+      "password": "$2b$08$FOZitSnW5fQ.ub5219sblun6nrAzWC6JhSlWMkG7UVHtcex1Nwhtu",
+      "firstName": "Mr.",
+      "lastName": "Anonymo",
+      "avatar": null,
+      "email": "anonymo@email.com"
+    },
+    {
+      "id": "ae035830-f7d5-4d32-ae37-ba032bee73da",
+      "password": "$2b$08$jeUVB8od36HmNxtP6r0kUe7cSfDJriaHq7fK7Rf6KZAXyfD3dBe8e",
+      "firstName": "Mr. ",
+      "lastName": "Anonymo",
+      "avatar": "uploads/avatar/avatar-1720484389325-212549151.png",
+      "email": "anonymo1@email.com"
+    },
+    {
+      "id": "19db30f1-6eee-4e94-a033-bce83e8160dd",
+      "password": "$2b$08$LJemlEodARRboksC.uvxPON3v1EK8B6djihCqsKHjVwvG.8RyBNBi",
+      "firstName": "sirius",
+      "lastName": "sirius",
+      "avatar": null,
+      "email": "sirius@gmail.com"
+    },
+    {
+      "id": "29e56771-ec79-46eb-982d-844698c086e6",
+      "password": "$2b$08$g8/0ub877i9dSWL1iZfreeSAXu76G6BFEVqKB8EtB.m3LSg.J0RzS",
+      "firstName": "another sirius",
+      "lastName": "another",
+      "avatar": null,
+      "email": "another@gmail.com"
+    },
+    {
+      "id": "19d23c20-56b3-4955-95a9-77f525d98edf",
+      "password": "$2b$08$lELybhugUrZGBSSxMY2OdOU9p8qiGIHTbzfMxNJviXGxPb7gY9pim",
+      "firstName": "Mr.",
+      "lastName": "Alyath",
+      "avatar": null,
+      "email": "alyath@gmail.com",
+      "bio": "sdfasfasdfasdf"
     }
   ]
 }

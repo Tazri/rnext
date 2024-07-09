@@ -4,6 +4,7 @@ import useProfile from "../../hooks/useProfile";
 import Logout from "../auth/Logout";
 import HomeIcon from "./../../assets/icons/home.svg";
 import NotificationIcon from "./../../assets/icons/notification.svg";
+import AvatarImage from "./../../assets/images/avatars/avatar_1.png";
 import Logo from "./../../assets/images/logo.svg";
 
 export default function Header() {
@@ -11,6 +12,9 @@ export default function Header() {
   const { state } = useProfile();
 
   const user = state?.user ?? auth?.user;
+  const avatarUrl = user.avatar
+    ? `${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}`
+    : AvatarImage;
 
   return (
     <nav className="sticky top-0 z-50 border-b border-[#3F3F3F] bg-[#1E1F24] py-4">
@@ -42,7 +46,7 @@ export default function Header() {
             </span>
             <img
               className="max-h-[32px] max-w-[32px] lg:max-h-[44px] lg:max-w-[44px] rounded-full"
-              src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}`}
+              src={avatarUrl}
               alt="avater"
             />
           </Link>
