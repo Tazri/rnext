@@ -1,8 +1,16 @@
-# React + Vite
+## Modules : 6.1 - Props Drilling and Props Plowing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Props drilling is pass the props from parent to chald again and again. Try to avoid it.
 
-Currently, two official plugins are available:
+> Props Plowing is pass too many props in the component.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Example :**
+
+```jsx
+function Bio({ age, name, address, gender, id, rule }) {
+  return <div>...</div>;
+}
+```
+
+- **Props Drilling** is Verticale Problem.
+- **Props Plowing** is Horizontal Problem.
