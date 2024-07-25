@@ -1,5 +1,3 @@
-## Modules : 6.2 - Component Nesting and Huge Components
+## Modules : 6.3 - Unwanted parent tags
 
-> Define a component in another component called nesting component. Try to avoid it. It's create performance issue.
-
-> If main component file become big, then try to break down it into to many and move another files.
+> Try to avoid unwanted parent tag. for exmaple : use extramly use `div` tag. Try `<></>` to avoid unwanted `div`.
