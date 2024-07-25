@@ -1,16 +1,5 @@
-## Modules : 6.1 - Props Drilling and Props Plowing
+## Modules : 6.2 - Component Nesting and Huge Components
 
-> Props drilling is pass the props from parent to chald again and again. Try to avoid it.
+> Define a component in another component called nesting component. Try to avoid it. It's create performance issue.
 
-> Props Plowing is pass too many props in the component.
-
-**Example :**
-
-```jsx
-function Bio({ age, name, address, gender, id, rule }) {
-  return <div>...</div>;
-}
-```
-
-- **Props Drilling** is Verticale Problem.
-- **Props Plowing** is Horizontal Problem.
+> If main component file become big, then try to break down it into to many and move another files.
