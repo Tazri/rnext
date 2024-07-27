@@ -1,9 +1,14 @@
-"use client";
-import { useEffect } from "react";
+async function fetchData() {
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 3000);
+  });
 
-export default function LoadData() {
-  useEffect(() => {
-    console.log("LoadData rendered");
-  }, []);
-  return <h1>Load Data</h1>;
+  return "Data from promise";
+}
+
+export default async function LoadData() {
+  const data = await fetchData();
+  return <h1>{data}</h1>;
 }
