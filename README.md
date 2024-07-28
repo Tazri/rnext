@@ -1,1 +1,1 @@
-## Module : 7.9 - route group
+## Module : 7.10 - Dynamic Routes
