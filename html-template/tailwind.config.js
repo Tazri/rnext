@@ -1,16 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-import typography from "./typography";
-import tailwindcssTypography from "@tailwindcss/typography";
-import tailwindcssAspectRatio from "@tailwindcss/aspect-ratio";
-
 module.exports = {
+  content: ["./dist/*.{html,js}"],
   darkMode: "class",
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-
   theme: {
     fontSize: {
       "2xs": ["0.75rem", { lineHeight: "1.25rem" }],
@@ -28,7 +19,7 @@ module.exports = {
       "8xl": ["6rem", { lineHeight: "1" }],
       "9xl": ["8rem", { lineHeight: "1" }],
     },
-    typography: typography,
+    typography: require("./typography"),
     extend: {
       colors: {
         lighterDark: "#0F172A",
@@ -51,5 +42,8 @@ module.exports = {
       },
     },
   },
-  plugins: [tailwindcssTypography, tailwindcssAspectRatio],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
